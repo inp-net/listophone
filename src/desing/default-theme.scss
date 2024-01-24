@@ -1,0 +1,9 @@
+@use 'variables.scss' as *;
+
+:root{
+    --bg: #{$white};
+    --textBlack: #{$black-700};
+    --textWhite: #{$white};
+    --error: #{$red-800};
+    --cardBg: #{$gray-200};
+}
