@@ -14,7 +14,7 @@
 
 
 <style lang=scss>
-    @use '../desing/app.scss' as *;
+    @use '../style/app.scss' as *;
     section{
         display: flex;
         flex-direction: column;
