@@ -4,7 +4,7 @@
 
 </script>
 <section>
-    <CardListeux filiere="3EA" list="Omni-Liste" clubs={["NebuListe","net7Consulting","OmniMan's FanClub","Can7 Hate club", "Photo7" ,"TVn7"]}></CardListeux>
+    <CardListeux filiere="3EA" liste="Omni-Liste" clubs={["NebuListe","net7Consulting","OmniMan's FanClub","Can7 Hate club", "Photo7" ,"TVn7"]}></CardListeux>
 </section>
 
 
