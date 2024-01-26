@@ -4,9 +4,7 @@
 
 </script>
 <section>
-    <p>deziz</p>
-    <Button>AH</Button>
-    <CardListeux filiere="3EA" liste="Omni-Liste" clubs={["NebuListe","net7Consulting","OmniMan's FanClub"]}></CardListeux>
+    <CardListeux filiere="3EA" list="Omni-Liste" clubs={["NebuListe","net7Consulting","OmniMan's FanClub","Can7 Hate club", "Photo7" ,"TVn7"]}></CardListeux>
 </section>
 
 
@@ -16,5 +14,6 @@
         flex-direction: column;
         align-items: center;
         background: var(--cardBg);
+        
     }
 </style>

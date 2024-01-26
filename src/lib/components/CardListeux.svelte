@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Pills from "./Pills.svelte";
+    import Button from "./Button.svelte";
 
     export let filiere = "";
     export let liste="";
@@ -24,19 +25,23 @@
             <Pills content={club}/>            
         {/each}
     </div>
+    <div class="actions">
+        <Button>Profil Churros</Button>
+        <Button>Appeler</Button>
+    </div>
 </div>
 
 <style lang=scss>
     .card{
-        padding: 1rem;
-        border-radius: 0.3rem;
+        padding: 1em;
+        border-radius: 20px;
         background: var(--bg);
     }
 
     .info{
         display: flex;
         align-items: center;
-        height:200px;
+        height:7.5em;
     }
 
     .info > img {
@@ -61,5 +66,12 @@
         display: flex;
         flex-wrap: wrap;
         gap:0.5rem;
+        margin: 1em 0;
+    }
+
+    .actions{
+        display: flex;
+        justify-content: space-evenly;
+
     }
 </style>
