@@ -1,13 +1,15 @@
 <script lang="ts">
-
+    export let type ="";
+    export let href ="";
+    export let num ="";
 </script>
 
-<button>
-    <slot />
-</button>
+<a href={(type === "call") ? "tel:"+num: href}>
+    <slot/>
+</a>
 
 <style>
-    button{
+    a{
         padding: 0.4rem;
         font-size: 1.25em;
         border-radius: 0.3rem;

@@ -25,7 +25,7 @@
     <CardListeux></CardListeux>
 
     <pre>
-        {JSON.stringify([liste1, liste2])}
+        {JSON.stringify([liste1.name, liste2.name])}
     </pre>
 </section>
 
