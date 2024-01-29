@@ -1,11 +1,12 @@
-import type { PageServerLoad } from "./$types";
+import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ cookies }) => {
-    const token = cookies.get('token')
-    const { data } = await fetch("https://churros.inpt.fr/graphql", {
-        method: "POST",
-        body: JSON.stringify({
-            query: `
+	const token = cookies.get('token');
+	if (!token) return { status: 401 , data:'no token'};
+	else {const { data } = await fetch('https://churros.inpt.fr/graphql', {
+		method: 'POST',
+		body: JSON.stringify({
+			query: `
             fragment Listeux on User {
                 pictureFile
                 firstName, lastName
@@ -33,13 +34,14 @@ export const load: PageServerLoad = async ({ cookies }) => {
                 liste1: group(uid: $liste1) { ...Liste }
                 liste2: group(uid: $liste2) { ...Liste }
              }`,
-            variables: { liste1: "pan7on", liste2: "ber7ker" }
-        }),
-        headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type":"application/json"
-        }
-    }).then(r => r.json())
+			variables: { liste1: 'pan7on', liste2: 'ber7ker' }
+		}),
+		headers: {
+			Authorization: `Bearer ${token}`,
+			'Content-Type': 'application/json'
+		}
+	}).then((r) => r.json());
 
-    return data
-}
+	return {status: 200, data};
+    }
+};

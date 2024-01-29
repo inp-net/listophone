@@ -4,16 +4,24 @@
 	import CardListeux from '$lib/components/CardListeux.svelte';
 	import { ChurrosClient } from '@inp-net/churros-client';
 	import type { PageData } from './$types';
+    import { onMount } from 'svelte';
+    import { goto } from '$app/navigation';
+    
 
-    export let data: PageData;
-    $: console.log({data, liste1})
-    $: ({ liste1, liste2 } = data)
-
+    export let data : PageData;
+    
     const churrosLoginURL = new ChurrosClient({
         client_id: PUBLIC_CHURROS_CLIENT_ID,
         client_secret: "",
         redirect_uri: "http://localhost:5173/oauth/callback"
     }).authorizationURL
+    console.log(churrosLoginURL);
+    
+    onMount(async () => {
+        if(data.status === 401){
+            window.location.href = churrosLoginURL;
+        }
+    })
 
 
 </script>
@@ -24,9 +32,6 @@
     <Button>petit caca</Button>
     <CardListeux></CardListeux>
 
-    <pre>
-        {JSON.stringify([liste1.name, liste2.name])}
-    </pre>
 </section>
 
 
@@ -36,6 +41,6 @@
         flex-direction: column;
         align-items: center;
         background: var(--cardBg);
-        
     }
+    
 </style>
