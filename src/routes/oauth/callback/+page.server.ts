@@ -5,8 +5,7 @@ import { ChurrosClient } from "@inp-net/churros-client";
 import type { PageServerLoad } from "./$types";
 import { redirect } from "@sveltejs/kit";
 
-
-
+//redirection vers le site après validation du lien entre churros et le site
 export const load: PageServerLoad = async ({ url, cookies }) => {
     const churros = new ChurrosClient({
         client_id: PUBLIC_CHURROS_CLIENT_ID,

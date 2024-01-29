@@ -1,5 +1,6 @@
 <script lang="ts">
     export let content="";
+    
 </script>
 
 {#if  content!==""}

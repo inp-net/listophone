@@ -1,4 +1,5 @@
-import type { PageServerLoad } from './$types';
+import { PUBLIC_LISTE1_UID, PUBLIC_LISTE2_UID } from "$env/static/public";
+import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = async ({ cookies }) => {
 	const token = cookies.get('token');
@@ -10,7 +11,7 @@ export const load: PageServerLoad = async ({ cookies }) => {
             fragment Listeux on User {
                 pictureFile
                 firstName, lastName
-                major { name }
+                major { shortName }
                 groups { group { uid, name } }
                 phone
             }
@@ -34,14 +35,14 @@ export const load: PageServerLoad = async ({ cookies }) => {
                 liste1: group(uid: $liste1) { ...Liste }
                 liste2: group(uid: $liste2) { ...Liste }
              }`,
-			variables: { liste1: 'pan7on', liste2: 'ber7ker' }
-		}),
-		headers: {
-			Authorization: `Bearer ${token}`,
-			'Content-Type': 'application/json'
-		}
-	}).then((r) => r.json());
-
-	return {status: 200, data};
+            variables: { liste1: PUBLIC_LISTE1_UID, liste2: PUBLIC_LISTE2_UID } //Nom des listes
+        }),
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type":"application/json"
+        }
+    }).then(r => r.json()); 
+    
+    return {status: 200, data};
     }
-};
+}

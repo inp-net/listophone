@@ -2,9 +2,9 @@
 	import Pills from "./Pills.svelte";
     import Button from "./Button.svelte";
 
-    export let filiere = "";
-    export let liste="";
-    export let clubs=[""];
+    export let filiere : string;
+    export let liste : string;
+    export let clubs : string[];
 </script>
 
 <div class="card">
