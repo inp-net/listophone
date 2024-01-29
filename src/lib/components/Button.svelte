@@ -1,10 +1,15 @@
 <script lang="ts">
+    import Icon from "@iconify/svelte";
+
     export let type ="";
     export let href ="";
     export let num ="";
 </script>
 
 <a href={(type === "call") ? "tel:"+num: href}>
+    {#if type === "call"}
+        <Icon icon="mdi:phone"/>
+    {/if}
     <slot/>
 </a>
 
@@ -16,6 +21,11 @@
         background: var(--cardBg);
         color: var(--text);
         border: 0;
-        width:130px;
-    }
+        max-width:130px;
+        text-decoration: none;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5em;
+}
 </style>

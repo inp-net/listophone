@@ -26,7 +26,7 @@
         {/each}
     </div>
     <div class="actions">
-        <Button type="redirect" href="https://churros.inpt.fr/users/">Profil Churros</Button>
+        <Button type="redirect" href={"https://churros.inpt.fr/users/"}>Profil Churros</Button>
         <Button type="call" num="">Appeler</Button>
     </div>
 </div>
@@ -37,6 +37,7 @@
         border-radius: 20px;
         background: var(--bg);
         max-width: 500px;
+        min-width: 300px;
     }
 
     .info{
