@@ -15,7 +15,6 @@
         client_secret: "",
         redirect_uri: "http://localhost:5173/oauth/callback"
     }).authorizationURL
-    console.log(churrosLoginURL);
     
     onMount(async () => {
         if(data.status === 401){
