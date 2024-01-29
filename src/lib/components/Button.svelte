@@ -1,7 +1,6 @@
 <script lang="ts">
     import Icon from '@iconify/svelte';
 
-    import { PUBLIC_LISTE1_UID, PUBLIC_LISTE2_UID } from '$env/static/public';
     import groupListe from '../../routes/+page.svelte'
     import { selectedListe } from '../../routes/stores'
 
@@ -19,7 +18,6 @@
             selectedListe.set(2);
         }if(liste1 !== undefined && liste2 !== undefined){
             selectedListe.set(Math.floor(Math.random()*2)+1);
-            
         }
     }
 </script>

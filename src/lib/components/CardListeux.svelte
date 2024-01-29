@@ -1,10 +1,23 @@
 <script lang="ts">
 	import Pills from "./Pills.svelte";
     import Button from "./Button.svelte";
+    import user from '../../routes/+page.svelte'
 
-    export let filiere : string;
-    export let liste : string;
-    export let clubs : string[];
+    import type groupListe from '../../routes/+page.svelte'
+	import { selectedListe } from "../../routes/stores";
+	import { PUBLIC_LISTE1_UID, PUBLIC_LISTE2_UID } from "$env/static/public";
+ 
+    export let selectedUser : user;
+
+    $:console.log(selectedUser)
+
+    let listeName : string;
+
+    $:if($selectedListe === 1){
+        listeName = PUBLIC_LISTE1_UID;
+    }else if($selectedListe === 2){
+        listeName = PUBLIC_LISTE2_UID;
+    }
 </script>
 
 <div class="card">
@@ -12,17 +25,17 @@
         <img src="https://pbs.twimg.com/media/FdnpbkmUYAAjhUy?format=jpg&name=4096x4096" alt="profile-pic"/>
         <div class="identity">
             <div class="name">
-                <h3>Nolan Grayson</h3>
-                <Pills content={filiere}/>
+                <h3>{selectedUser.member.firstName} {selectedUser.member.lastName}</h3>
+                <Pills content={selectedUser.member.major.shortName}/>
             </div>
             <div class="list">
-                {liste}
+                {listeName}
             </div>
         </div>
     </div>
     <div class="clubs">
-        {#each clubs as club}
-            <Pills content={club}/>            
+        {#each selectedUser.member.groups as club}
+            <Pills content={club.group.name}/>            
         {/each}
     </div>
     <div class="actions">

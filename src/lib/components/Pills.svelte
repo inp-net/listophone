@@ -3,9 +3,9 @@
     
 </script>
 
-{#if  content!==""}
+{#if content!==""}
 <div class="pill">
-        {content}
+    {content}
 </div>
 {/if}
 

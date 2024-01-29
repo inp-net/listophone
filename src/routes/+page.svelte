@@ -1,13 +1,11 @@
 <script lang="ts">
-	import { PUBLIC_CHURROS_CLIENT_ID } from '$env/static/public';
+	import { PUBLIC_CHURROS_CLIENT_ID, PUBLIC_LISTE1_UID } from '$env/static/public';
     import Button from '$lib/components/Button.svelte';
 	import CardListeux from '$lib/components/CardListeux.svelte';
 	import { ChurrosClient } from '@inp-net/churros-client';
 	import type { PageData } from './$types';
     import { onMount } from 'svelte';
-    import { goto } from '$app/navigation';
-    
-
+     
     import { selectedListe } from './stores';
 
     export let data: PageData;
@@ -26,68 +24,76 @@
         }
     })
 
-    interface group {
+interface groups {
+    group : {
         uid : string,
         name : string
     }
+}
 
-    interface user {
-        member : {
-            pictureFile : string,
-            firstName : string,
-            lastName : string,
-            major : {
-                shortName : string
-            },
-            groups : group[],
-            phone : string
-        }
-        
-    }
-
-    interface groupListe {
+interface user {
+    member : {
         pictureFile : string,
-        name : string,
-        color : string,
-        members : user[]
+        firstName : string,
+        lastName : string,
+        major : {
+            shortName : string
+        },
+        groups : groups[]
+        phone : string
     }
+    
+}
 
+interface groupListe {
+    pictureFile : string,
+    name : string,
+    color : string,
+    members : user[]
+}
 
     let index : number = 0;
 
     //initalisation avec toutes les données vides pour pas vexer typeScript
     let selectedUser : user = {
         member : {
-            pictureFile : "",
-            firstName : "",
-            lastName : "",
+            pictureFile : "Aucune",
+            firstName : "??",
+            lastName : "??",
             major : {
-                shortName : "",
+                shortName : "??",
             },
-            groups : [{
-                uid: '',
-                name: '',
-            }],
-            phone : ''
+            groups : [
+                {
+                    group: {
+                        uid: "1",
+                        name: "Group 1"
+                    }
+                },
+                {
+                    group: {
+                        uid: "2",
+                        name: "Group 2"
+                    }
+                },
+            ],
+            phone : "?"
         }
     };
+
 
     $:if($selectedListe === 1){
         selectedUser = liste1.members[index];
     }else if ($selectedListe === 2){
         selectedUser = liste2.members[index];
     }
+    let test : any; //extremement sus, doit être changé ou a envoyer a movaicode. au choix quoi.
+    $: test = selectedUser
 
 
 </script>
 <section>
-    {#if $selectedListe === 0}
-        <CardListeux filiere={"??"} liste={"Pantalon"} clubs={["NebuListe","net7Consulting","OmniMan's FanClub","Can7 Hate club", "Photo7" ,"TVn7"]}></CardListeux>
-    {:else if $selectedListe === 1}
-        <CardListeux filiere={selectedUser.member.major.shortName} liste={liste1.name} clubs={["NebuListe","net7Consulting","OmniMan's FanClub","Can7 Hate club", "Photo7" ,"TVn7"]}></CardListeux>
-    {:else if $selectedListe ===2}
-        <CardListeux filiere={selectedUser.member.major.shortName} liste={liste2.name} clubs={["NebuListe","net7Consulting","OmniMan's FanClub","Can7 Hate club", "Photo7" ,"TVn7"]}></CardListeux>
-    {/if}
+    <CardListeux selectedUser={test}></CardListeux>
     <a href={churrosLoginURL} >Se connecter</a>
     <Button liste1={liste1} bind:index={index} >Listeux {liste1.name}</Button>
     <Button liste2={liste2} bind:index={index} >Listeux {liste2.name}</Button>
