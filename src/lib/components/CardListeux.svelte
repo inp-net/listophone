@@ -19,7 +19,7 @@
 </script>
 
 <div class="card">
-    <div class="headerInfo">
+    <div class="headerInfo {$selectedListe === 1 ? "styleListe1" : "styleListe2"}">
         <img src={apayan} alt='profile-pic'/>
         <div class="identity">
             <div class="name">
@@ -34,12 +34,12 @@
     </div>
     <div class="clubs">
         {#each selectedUser.member.groups as club}
-            <Pills class='clubs' content={club.group.name}/>            
+            <Pills class={$selectedListe === 1 ? 'styleListe1' : 'styleListe2' } content={club.group.name}/>            
         {/each}
     </div>
     <div class="actions">
-        <Button type="redirect">Profil Churros</Button>
-        <Button type="call">Appeler</Button>
+        <Button type="redirect" class={$selectedListe === 1 ? "styleListe1" : "styleListe2" }>Profil Churros</Button>
+        <Button type="call" class={$selectedListe === 1 ? "styleListe1" : "styleListe2" }>Appeler</Button>
     </div>
 </div>
 
@@ -79,11 +79,20 @@
         border-top-left-radius: 20px;
         border-top-right-radius: 20px;
         padding: 1rem;
-        background: var(--primary-color);
         display: flex;
         gap : 1em;
         align-items: center;
         height:auto;
+
+        &.styleListe1{
+            background: var(--liste1-bg-color);
+            color: var(--liste1-text-color);
+        }
+
+        &.styleListe2{
+            background: var(--liste2-bg-color);
+            color: var(--liste2-text-color);
+        }
     }
 
     .headerInfo > img {

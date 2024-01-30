@@ -7,4 +7,11 @@
     --textWhite: #{$white};
     --error: #{$red-800};
     --cardBg: #{$gray-200};
+    //couleur des listes à changer -> Amélioration possible recup la couleur de la liste si elle est indiqué par le club dans churros (c'est pas fait prsk actuellement c'est "pas possible"
+    --liste1-bg-color: #{$liste1};
+    --liste2-bg-color: #{$liste2};
+    --neutral-bg-color: #{$blue-700};
+    --liste1-text-color: #{$black};
+    --liste2-text-color: #{$white};
+    --neutral-text-color: #{$white};
 }

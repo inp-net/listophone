@@ -104,8 +104,10 @@
 <section>
     <CardListeux selectedUser={test}></CardListeux>
     <a href={churrosLoginURL} >Se connecter</a>
-    <Button type="randomizer" liste1={liste1} bind:index={index} >Listeux {PUBLIC_LISTE1_UID}</Button>
-    <Button type="randomizer" liste2={liste2} bind:index={index} >Listeux {PUBLIC_LISTE2_UID}</Button>
+    <div id="buttonUniqueListe">
+        <Button type="randomizer" class='styleListe1' liste1={liste1} bind:index={index} >Listeux {PUBLIC_LISTE1_UID}</Button>
+        <Button type="randomizer" class='styleListe2' liste2={liste2} bind:index={index} >Listeux {PUBLIC_LISTE2_UID}</Button>
+    </div>
     <Button type="randomizer" liste1={liste1} liste2={liste2} bind:index={index}>Listeux quelconque</Button>
 </section>
 
@@ -118,4 +120,9 @@
         background: var(--cardBg);
     }
     
+    #buttonUniqueListe{
+        display: flex;
+        gap: 1rem;
+    }
+
 </style>

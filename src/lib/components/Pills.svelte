@@ -1,7 +1,8 @@
 <script lang="ts">
     export let content : string='';
-    let theme: 'filiere' | 'clubs';
+    let theme: 'filiere' | 'styleListe1' | 'styleListe2';
     export {theme as class};
+
 </script>
 
 {#if content!==""}
@@ -17,14 +18,21 @@
         padding-left: 0.7rem;
         padding-right: 0.7rem;
         border-radius: 0.3rem;
-        color: var(--text);
-    }
+        color: black;
 
-    .pill.filiere{
+        &.filiere{
         background: var(--bg);
+        }
+
+        &.styleListe1{
+            background: var(--liste1-bg-color);
+            color: var(--liste1-text-color);
+        }
+
+        &.styleListe2{
+            background: var(--liste2-bg-color);
+            color: var(--liste2-text-color);
+        }
     }
 
-    .pill.clubs{
-        background: var(--primary-color)
-    }
 </style>
