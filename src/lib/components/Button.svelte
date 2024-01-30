@@ -2,12 +2,12 @@
     import Icon from '@iconify/svelte';
 
     import groupListe from '../../routes/+page.svelte'
-    import { selectedListe } from '../../routes/stores'
+    import { selectedListe, userPhoneNumber, userUid } from '../../routes/stores'
 
     export let liste1 : groupListe | undefined = undefined;
     export let liste2 : groupListe | undefined = undefined;
     export let index : number = 0;
-    export let type ="";
+    export let type: 'randomizer' | 'call' | 'redirect';
     export let href ="";
     export let num ="";
 
@@ -20,28 +20,40 @@
             selectedListe.set(Math.floor(Math.random()*2)+1);
         }
     }
+
+    function selectRandomUser(){
+        selectRandomListe();
+        if($selectedListe === 1 && liste1 !== undefined){
+            index=Math.floor(Math.random()*(liste1.members.length-1))
+        }else if($selectedListe === 2 && liste2 !== undefined){
+            index=Math.floor(Math.random()*(liste2.members.length-1))
+        }
+    }
 </script>
 
-<a href={(type === "call") ? "tel:"+num: href}>
-    {#if type === "call"}
-        <Icon icon="mdi:phone"/>
-    {/if}
-    <slot/>
-</a>
-	
-<button on:click={() => {
-    selectRandomListe();
-    if($selectedListe === 1 && liste1 !== undefined){
-        index=Math.floor(Math.random()*(liste1.members.length-1))
-    }else if($selectedListe === 2 && liste2 !== undefined){
-        index=Math.floor(Math.random()*(liste2.members.length-1))
-    }
-}}>
-    <slot />
-</button>
+<div>	
+    <button class={type} on:click={() => {
+        switch( type ) {
+            case "randomizer":
+                selectRandomListe();
+                break;
+            case "call":
+                window.open(`tel:${userPhoneNumber}`);
+                break;
+            case "redirect":
+                window.open(`https://churros.inpt.fr/users/${userUid}`);
+                break;
+        }
+    }}>
+        {#if type==="call"}
+            <Icon icon="mdi:phone"/>
+        {/if}
+        <slot />
+    </button>
+</div>
 
 <style>
-    a{
+    button{
         padding: 0.4rem;
         font-size: 1.25em;
         border-radius: 0.3rem;
