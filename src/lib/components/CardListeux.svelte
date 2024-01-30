@@ -3,8 +3,7 @@
     import Button from "./Button.svelte";
     import user from '../../routes/+page.svelte'
 
-    import type groupListe from '../../routes/+page.svelte'
-	import { selectedListe } from "../../routes/stores";
+	import { selectedListe, userPhoneNumber } from "../../routes/stores";
 	import { PUBLIC_LISTE1_UID, PUBLIC_LISTE2_UID } from "$env/static/public";
  
     export let selectedUser : user;
@@ -24,12 +23,15 @@
     <div class="info">
         <img src="https://pbs.twimg.com/media/FdnpbkmUYAAjhUy?format=jpg&name=4096x4096" alt="profile-pic"/>
         <div class="identity">
-            <div class="name">
-                <h3>{selectedUser.member.firstName} {selectedUser.member.lastName}</h3>
-                <Pills content={selectedUser.member.major.shortName}/>
-            </div>
-            <div class="list">
-                {listeName}
+            <div class="headerCard">
+                <div class="name">
+                    <h3>{selectedUser.member.firstName} {selectedUser.member.lastName}</h3>
+                    <Pills content={selectedUser.member.major.shortName}/>
+                </div>
+                <div class="list">
+                    {listeName}
+                </div>
+                <p>{$userPhoneNumber}</p>
             </div>
         </div>
     </div>
@@ -39,8 +41,8 @@
         {/each}
     </div>
     <div class="actions">
-        <Button type="redirect" href={"https://churros.inpt.fr/users/"}>Profil Churros</Button>
-        <Button type="call" num="">Appeler</Button>
+        <Button type="redirect">Profil Churros</Button>
+        <Button type="call">Appeler</Button>
     </div>
 </div>
 
@@ -51,6 +53,17 @@
         background: var(--bg);
         max-width: 500px;
         min-width: 300px;
+    }
+
+    .headerCard{
+        .name{
+            justify-content: space-between; //mouais
+        }
+        .list{
+            font-size: 2em;
+            font-weight: 600;
+        }
+
     }
 
     .info{

@@ -8,8 +8,6 @@
     export let liste2 : groupListe | undefined = undefined;
     export let index : number = 0;
     export let type: 'randomizer' | 'call' | 'redirect';
-    export let href ="";
-    export let num ="";
 
     function selectRandomListe(){
         if(liste1 !== undefined && liste2 === undefined){
@@ -54,6 +52,7 @@
 
 <style>
     button{
+        margin: 0.4rem;
         padding: 0.4rem;
         font-size: 1.25em;
         border-radius: 0.3rem;

@@ -1,6 +1,35 @@
 import { PUBLIC_LISTE1_UID, PUBLIC_LISTE2_UID } from "$env/static/public";
 import type { PageServerLoad } from "./$types";
 
+interface groups {
+    group : {
+        uid : string,
+        name : string
+    }
+}
+
+interface user {
+    member : {
+        pictureFile : string,
+        firstName : string,
+        lastName : string,
+        uid: string,
+        major : {
+            shortName : string
+        },
+        groups : groups[]
+        phone : string
+    }
+    
+}
+
+interface groupListe {
+    pictureFile : string,
+    name : string,
+    color : string,
+    members : user[]
+}
+
 export const load: PageServerLoad = async ({ cookies }) => {
 	const token = cookies.get('token');
 	if (!token) return { status: 401 , data:'no token'};
@@ -43,7 +72,7 @@ export const load: PageServerLoad = async ({ cookies }) => {
             "Content-Type":"application/json"
         }
     }).then(r => r.json()); 
-    
+    data.liste1.members = data.liste1.members.filter((n : user) => n.member.phone !== "") //filtrage des listes pour retirer les gens qui ont pas mis leur tel = qui veulent pas participer
     return {status: 200, data};
     }
 }

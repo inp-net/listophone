@@ -5,11 +5,41 @@
 	import { ChurrosClient } from '@inp-net/churros-client';
 	import type { PageData } from './$types';
     import { onMount } from 'svelte';
-     
+
     import { selectedListe, userUid, userPhoneNumber } from './stores';
 
     export let data: PageData;
     $: ({ liste1, liste2 } = data.data)
+
+    //definition de type redondante ça doit dégager.
+    interface groups {
+        group : {
+            uid : string,
+            name : string
+        }
+    }
+
+    interface user {
+        member : {
+            pictureFile : string,
+            firstName : string,
+            lastName : string,
+            uid: string,
+            major : {
+                shortName : string
+            },
+            groups : groups[]
+            phone : string
+        }
+        
+    }
+
+        interface groupListe {
+        pictureFile : string,
+        name : string,
+        color : string,
+        members : user[]
+    }
 
     //lien entre le listophone et Churros par l'oauth (page initiale pour lier le compte churros au site)
     const churrosLoginURL = new ChurrosClient({
@@ -23,35 +53,6 @@
             window.location.href = churrosLoginURL;
         }
     })
-
-interface groups {
-    group : {
-        uid : string,
-        name : string
-    }
-}
-
-interface user {
-    member : {
-        pictureFile : string,
-        firstName : string,
-        lastName : string,
-        uid: string,
-        major : {
-            shortName : string
-        },
-        groups : groups[]
-        phone : string
-    }
-    
-}
-
-interface groupListe {
-    pictureFile : string,
-    name : string,
-    color : string,
-    members : user[]
-}
 
     let index : number = 0;
 
@@ -91,10 +92,12 @@ interface groupListe {
 
     }else if ($selectedListe === 2){
         selectedUser = liste2.members[index];
+        userUid.set(selectedUser.member.uid);
+        userPhoneNumber.set(selectedUser.member.phone);
     }
     let test : any; //extremement sus, doit être changé ou a envoyer a movaicode. au choix quoi.
     //pour ceux qui lirons peut être ce code à l'avenir je suis désolé mdrrrrrrrr 
-    $: test = selectedUser
+    $: test = selectedUser;
 
 </script>
 
