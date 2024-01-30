@@ -35,7 +35,7 @@
     <button class={type} on:click={() => {
         switch( type ) {
             case "randomizer":
-                selectRandomListe();
+                selectRandomUser();
                 break;
             case "call":
                 window.open(`tel:${$userPhoneNumber}`);
