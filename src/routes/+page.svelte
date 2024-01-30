@@ -36,6 +36,7 @@ interface user {
         pictureFile : string,
         firstName : string,
         lastName : string,
+        uid: string,
         major : {
             shortName : string
         },
@@ -60,6 +61,7 @@ interface groupListe {
             pictureFile : "Aucune",
             firstName : "??",
             lastName : "??",
+            uid: "??",
             major : {
                 shortName : "??",
             },
@@ -84,7 +86,7 @@ interface groupListe {
 
     $:if($selectedListe === 1){
         selectedUser = liste1.members[index];
-        userUid.set(selectedUser.member.firstName);
+        userUid.set(selectedUser.member.uid);
         userPhoneNumber.set(selectedUser.member.phone);
 
     }else if ($selectedListe === 2){

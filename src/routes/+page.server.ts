@@ -11,6 +11,7 @@ export const load: PageServerLoad = async ({ cookies }) => {
             fragment Listeux on User {
                 pictureFile
                 firstName, lastName
+                uid
                 major { shortName }
                 groups { group { uid, name } }
                 phone

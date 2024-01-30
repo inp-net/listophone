@@ -38,10 +38,10 @@
                 selectRandomListe();
                 break;
             case "call":
-                window.open(`tel:${userPhoneNumber}`);
+                window.open(`tel:${$userPhoneNumber}`);
                 break;
             case "redirect":
-                window.open(`https://churros.inpt.fr/users/${userUid}`);
+                window.open(`https://churros.inpt.fr/users/${$userUid}`);
                 break;
         }
     }}>
