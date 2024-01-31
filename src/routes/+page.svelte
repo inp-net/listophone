@@ -9,8 +9,14 @@
     import { selectedListe, userUid, userPhoneNumber } from './stores';
 
     export let data: PageData;
-    $: ({ liste1, liste2 } = data.data)
 
+    let liste1: any;
+    let liste2: any;
+    onMount( () => {
+        ({ liste1, liste2 } = data.data);
+    });
+     
+   
     //definition de type redondante ça doit dégager.
     interface groups {
         group : {
