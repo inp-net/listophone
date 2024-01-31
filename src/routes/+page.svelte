@@ -5,8 +5,8 @@
 	import { ChurrosClient } from '@inp-net/churros-client';
 	import type { PageData } from './$types';
     import { onMount } from 'svelte';
-
     import { selectedListe, userUid, userPhoneNumber } from './stores';
+    import logo from '$lib/asset/listophoneLogo.png';
 
     export let data: PageData;
 
@@ -108,6 +108,7 @@
 </script>
 
 <section>
+    <img src={logo} alt="logo-site"/>
     <CardListeux selectedUser={test}></CardListeux>
     <a href={churrosLoginURL} >Se connecter</a>
     <div id="buttonUniqueListe">
@@ -121,11 +122,20 @@
 <style lang=scss>
     section{
         display: flex;
+        flex-grow: 1;
         flex-direction: column;
         align-items: center;
         background: var(--cardBg);
+
+        height : 100vh
+        
     }
     
+    img{
+        padding : 1.2rem;
+        padding-bottom: 0.6rem;
+        width: 20rem;
+    }
     #buttonUniqueListe{
         display: flex;
         gap: 1rem;

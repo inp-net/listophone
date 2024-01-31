@@ -71,7 +71,7 @@ export const load: PageServerLoad = async ({ cookies }) => {
             Authorization: `Bearer ${token}`,
             "Content-Type":"application/json"
         }
-    }).then(r => r.json()); 
+    }).then(r => r.json());
     data.liste1.members = data.liste1.members.filter((n : user) => n.member.phone !== "") //filtrage des listes pour retirer les gens qui ont pas mis leur tel = qui veulent pas participer
     return {status: 200, data};
     }
