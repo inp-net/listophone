@@ -116,6 +116,7 @@
         <Button type="randomizer" class='styleListe2' liste2={liste2} bind:index={index} >Listeux {PUBLIC_LISTE2_UID}</Button>
     </div>
     <Button type="randomizer" liste1={liste1} liste2={liste2} bind:index={index}>Listeux quelconque</Button>
+    <footer>Developped by <a href="https://churros.inpt.fr/groups/pan7on/">Pan7on</a> & <a href="https://churros.inpt.fr/groups/net7-n7/">net7</a></footer>
 </section>
 
 
@@ -133,12 +134,30 @@
     
     img{
         padding : 1.2rem;
-        padding-bottom: 0.6rem;
+        padding-bottom: 0.6rem ;
         width: 20rem;
     }
     #buttonUniqueListe{
         display: flex;
         gap: 1rem;
     }
+
+    footer{
+        position: fixed;
+        bottom: 0%;
+        padding: 0.8rem;
+        margin-bottom: 1rem;
+        border-radius: 20px;
+        background: rgb(255, 255, 255);
+
+        font-size: 0.8rem;
+        color: rgba(0,0,0, 0.8);
+
+        a{
+            color : var(--textLink);
+            text-decoration: none;
+        }
+    }
+
 
 </style>
