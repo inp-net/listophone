@@ -110,22 +110,25 @@
 </script>
 
 <section>
-    <img src={logo} alt="logo-site"/>
+    <header>
+        <img src={logo} alt="logo-site"/>
+        <div class="rules">
+            <div class="rules-description">
+                <h1>Rappel des règles :</h1>
+                <ul>
+                    <li><strong>2 personnes </strong>par allos</li>
+                    <li><strong>Liberté</strong> : On force personne dans les allos</li>
+                    <li><strong>Informer</strong> : Les listeux doivent tout savoir</li>
+                </ul>
+            </div>
+            <button on:click={() => popUpActive=true}>Règles complètes</button>
+        </div>
+    </header>
     {#if popUpActive}
         <div class="popUp">
             <PopUpWarning bind:popUpActive={popUpActive}/>
         </div>
     {/if}
-    <div class="rules-mini">
-        <h1>Rappel des règles :</h1>
-        <ul>
-            <li>2 personnes par allos</li>
-            <li>Liberté : On force personne dans les allos</li>
-            <li>Informer : Les listeux doivent tout savoir</li>
-        </ul>
-    </div>
-    <button on:click={() => popUpActive=true}>Règles complètes</button>
-
     <CardListeux selectedUser={test}></CardListeux>
     <div id="buttonUniqueListe">
         <Button type="randomizer" class='styleListe1' liste1={liste1} bind:index={index} >Listeux {PUBLIC_LISTE1_UID}</Button>
@@ -147,6 +150,19 @@
 
         min-height : 100vh;
     }
+
+    header{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+        padding: 1rem;
+
+        @media (min-width:600px) {
+            column-gap: 10rem;
+        }
+    }
     
     img{
         padding : 1.2rem;
@@ -167,7 +183,16 @@
         background: rgba(112, 110, 110, 0.4);
     }
 
-    .rules-mini{
+    .rules{
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+
+        @media (max-width:600px){
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .rules-description{
         display: flex;
         flex-direction: column;
         gap: 1rem;
@@ -178,7 +203,9 @@
         padding-top: 1rem;
 
         border-radius: 20px;
+        }
     }
+    
 
     #buttonUniqueListe{
         display: flex;

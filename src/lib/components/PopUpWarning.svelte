@@ -9,11 +9,11 @@
 
     <p>Avant de vous laissez selectionner un 1A pour vos allos quelques petits rappels sur les règles :</p>
     <ul>
-        <li>Chaque allo doit être fait par groupe de DEUX LISTEUX MINIMUM peut importe la demande</li>
-        <li>Liberté : Vous ne devez pas forcer quelqu'un à faire quelque chose qu'il ne veut pas</li>
-        <li>Informer : Les listeux doivent être au courant de tout avant de venir</li>
+        <li>Chaque allo doit être fait par groupe de <strong>DEUX LISTEUX MINIMUM</strong> peut importe la demande. Vous devez appeler un seul 1A, les listes s'occuperont d'envoyer une deuxième personne</li>
+        <li><strong>Liberté</strong> : Vous ne devez pas forcer quelqu'un à faire quelque chose qu'il ne veut pas</li>
+        <li><strong>Informer</strong> : Les listeux doivent être au courant de tout avant de venir</li>
     </ul>
-    <p>Le non respect de ces règles entrainera des sanctions (mais vous êtes pas des enculées hein :) )</p>
+    <p>Le non respect de ces règles entrainera des sanctions (mais vous êtes pas des enculés hein :) )</p>
     <button on:click={() => {popUpActive = false}}>Oui c'est promis pas de bétises</button>
 </div>
 
@@ -29,6 +29,7 @@
         border-radius: 20px;
         margin: 1rem;
         padding: 1rem;
+        padding-top: 2rem;
         padding-left: 2rem;
         padding-right: 2rem;
         gap: 1rem;
