@@ -27,7 +27,7 @@
                 <Pills class='filiere' content={selectedUser.member.major.shortName}/>
             </div>
             <div class="list">
-                {listeName}
+                {listeName ?? "??"}
             </div>
             <p>{$userPhoneNumber}</p>
         </div>
@@ -45,7 +45,6 @@
 
 <style lang=scss>
     .card{
-        margin-top: 1rem;
         padding-bottom: 0.5rem;
         border-radius: 20px;
         background: var(--bg);

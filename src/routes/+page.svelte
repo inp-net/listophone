@@ -7,6 +7,7 @@
     import { onMount } from 'svelte';
     import { selectedListe, userUid, userPhoneNumber } from './stores';
     import logo from '$lib/asset/listophoneLogo.png';
+	import PopUpWarning from '$lib/components/PopUpWarning.svelte';
 
     export let data: PageData;
 
@@ -61,6 +62,7 @@
     })
 
     let index : number = 0;
+    let popUpActive : boolean = true;
 
     //initalisation avec toutes les données vides pour pas vexer typeScript
     let selectedUser : user = {
@@ -109,8 +111,22 @@
 
 <section>
     <img src={logo} alt="logo-site"/>
+    {#if popUpActive}
+        <div class="popUp">
+            <PopUpWarning bind:popUpActive={popUpActive}/>
+        </div>
+    {/if}
+    <div class="rules-mini">
+        <h1>Rappel des règles :</h1>
+        <ul>
+            <li>2 personnes par allos</li>
+            <li>Liberté : On force personne dans les allos</li>
+            <li>Informer : Les listeux doivent tout savoir</li>
+        </ul>
+    </div>
+    <button on:click={() => popUpActive=true}>Règles complètes</button>
+
     <CardListeux selectedUser={test}></CardListeux>
-    <a href={churrosLoginURL} >Se connecter</a>
     <div id="buttonUniqueListe">
         <Button type="randomizer" class='styleListe1' liste1={liste1} bind:index={index} >Listeux {PUBLIC_LISTE1_UID}</Button>
         <Button type="randomizer" class='styleListe2' liste2={liste2} bind:index={index} >Listeux {PUBLIC_LISTE2_UID}</Button>
@@ -127,25 +143,63 @@
         flex-direction: column;
         align-items: center;
         background: var(--cardBg);
+        gap: 1rem;
 
-        height : 100vh
-        
+        min-height : 100vh;
     }
     
     img{
         padding : 1.2rem;
-        padding-bottom: 0.6rem ;
+        padding-bottom: 0.0rem ;
         width: 20rem;
     }
+
+    .popUp{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        background: rgba(112, 110, 110, 0.4);
+    }
+
+    .rules-mini{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        background: white;
+        padding: 1.8rem;
+        padding-bottom: 1rem;
+        padding-top: 1rem;
+
+        border-radius: 20px;
+    }
+
     #buttonUniqueListe{
         display: flex;
         gap: 1rem;
     }
 
-    footer{
-        position: fixed;
-        bottom: 0%;
+    button{
         padding: 0.8rem;
+        
+        border-radius: 20px;
+        border: 0;
+
+        background: white;
+        font-weight: bold;
+    }
+
+    footer{
+        position: flex;
+
+        padding: 0.8rem;
+        margin-top:auto ;
         margin-bottom: 1rem;
         border-radius: 20px;
         background: rgb(255, 255, 255);
