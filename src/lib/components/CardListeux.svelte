@@ -2,7 +2,6 @@
 	import Pills from "./Pills.svelte";
     import Button from "./Button.svelte";
     import user from '../../routes/+page.svelte'
-    import apayan from '$lib/asset/apayan.png'
 
 	import { selectedListe, userPhoneNumber } from "../../routes/stores";
 	import { PUBLIC_LISTE1_UID, PUBLIC_LISTE2_UID } from "$env/static/public";
@@ -20,7 +19,7 @@
 
 <div class="card">
     <div class="headerInfo {$selectedListe === 1 ? "styleListe1" : "styleListe2"}">
-        <img src={apayan} alt='profile-pic'/>
+        <img src="https://churros.inpt.fr/storage/{selectedUser.member.pictureFile}" alt='profile-pic'/>
         <div class="identity">
             <div class="name">
                 <p>{selectedUser.member.firstName} {selectedUser.member.lastName}<p>
@@ -54,14 +53,13 @@
     .identity{
         display: flex;
         height:auto;
-        padding-left: 0.5em;
         flex-direction: column;
         width: 100%;
         .name{
             display: flex;
             justify-content: space-between;
             align-items: baseline;   
-            gap:0.5em;
+            gap:0.8em;
             p{
                 font-size: 1.5rem;
             }
@@ -96,8 +94,9 @@
 
     .headerInfo > img {
         display: flex;
+        flex-shrink: 0;
         align-items: baseline;
-        height : 5em;
+        height : 8em;
         border-radius: 100%;
     }
 
