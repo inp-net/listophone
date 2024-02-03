@@ -82,6 +82,7 @@ export const load: PageServerLoad = async ({ cookies }) => {
 			return result;
 		});
 		data.liste1.members = data.liste1.members.filter((n: user) => n.member.phone !== ''); //filtrage des listes pour retirer les gens qui ont pas mis leur tel = qui veulent pas participer
-		return { status: 200, data };
+        data.liste2.members = data.liste2.members.filter((n : user) => n.member.phone !== '')
+        return { status: 200, data };
 	}
 };
