@@ -1,5 +1,5 @@
-import { writable } from 'svelte/store'
+import { writable } from 'svelte/store';
 
 export let selectedListe = writable(0);
-export let userUid = writable("");
-export let userPhoneNumber = writable("");
+export let userUid = writable('');
+export let userPhoneNumber = writable('');

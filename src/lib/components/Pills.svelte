@@ -1,38 +1,36 @@
 <script lang="ts">
-    export let content : string='';
-    let theme: 'filiere' | 'styleListe1' | 'styleListe2';
-    export {theme as class};
-
+	export let content: string = '';
+	let theme: 'filiere' | 'styleListe1' | 'styleListe2';
+	export { theme as class };
 </script>
 
-{#if content!==""}
-    <div class="pill {theme}">
-        {content}
-    </div>
+{#if content !== ''}
+	<div class="pill {theme}">
+		{content}
+	</div>
 {/if}
 
 <style lang="scss">
-    .pill{
-        font-size: 1rem;
-        padding: 0.4rem;
-        padding-left: 0.7rem;
-        padding-right: 0.7rem;
-        border-radius: 0.3rem;
-        color: black;
+	.pill {
+		font-size: 1rem;
+		padding: 0.4rem;
+		padding-left: 0.7rem;
+		padding-right: 0.7rem;
+		border-radius: 0.3rem;
+		color: black;
 
-        &.filiere{
-        background: var(--bg);
-        }
+		&.filiere {
+			background: var(--bg);
+		}
 
-        &.styleListe1{
-            background: var(--liste1-bg-color);
-            color: var(--liste1-text-color);
-        }
+		&.styleListe1 {
+			background: var(--liste1-bg-color);
+			color: var(--liste1-text-color);
+		}
 
-        &.styleListe2{
-            background: var(--liste2-bg-color);
-            color: var(--liste2-text-color);
-        }
-    }
-
+		&.styleListe2 {
+			background: var(--liste2-bg-color);
+			color: var(--liste2-text-color);
+		}
+	}
 </style>
