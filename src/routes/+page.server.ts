@@ -42,7 +42,13 @@ export const load: PageServerLoad = async ({ cookies }) => {
                 firstName, lastName
                 uid
                 major { shortName }
-                groups { group { uid, name } }
+                groups { 
+					president,
+					treasurer,
+					vicePresident,
+					secretary,
+					group { uid, name } 
+				}
                 phone
             }
 
@@ -82,7 +88,7 @@ export const load: PageServerLoad = async ({ cookies }) => {
 			return result;
 		});
 		data.liste1.members = data.liste1.members.filter((n: user) => n.member.phone !== ''); //filtrage des listes pour retirer les gens qui ont pas mis leur tel = qui veulent pas participer
-        data.liste2.members = data.liste2.members.filter((n : user) => n.member.phone !== '')
+        data.liste2.members = data.liste2.members.filter((n : user) => n.member.phone !== '');
         return { status: 200, data };
 	}
 };

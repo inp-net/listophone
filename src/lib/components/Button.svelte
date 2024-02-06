@@ -1,14 +1,14 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
-	import groupListe from '../../routes/+page.svelte';
+	import type { groupListe } from '../../routes/+page.svelte';
 	import { selectedListe, userPhoneNumber, userUid } from '../../routes/stores';
+	import { index } from "../../routes/stores";
 
 	let theme: 'styleListe1' | 'styleListe2' | undefined = undefined;
 	export { theme as class };
 
 	export let liste1: groupListe | undefined = undefined;
 	export let liste2: groupListe | undefined = undefined;
-	export let index: number = 0;
 	export let type: 'randomizer' | 'call' | 'redirect';
 
 	function selectRandomListe() {
@@ -26,9 +26,9 @@
 	function selectRandomUser() {
 		selectRandomListe();
 		if ($selectedListe === 1 && liste1 !== undefined) {
-			index = Math.floor(Math.random() * (liste1.members.length - 1));
+			index.set(Math.floor(Math.random() * (liste1.members.length - 1)));
 		} else if ($selectedListe === 2 && liste2 !== undefined) {
-			index = Math.floor(Math.random() * (liste2.members.length - 1));
+			index.set(Math.floor(Math.random() * (liste2.members.length - 1)));
 		}
 	}
 </script>

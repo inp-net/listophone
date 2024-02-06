@@ -1,6 +1,4 @@
 <script lang="ts">
-	let grosPet: string = 'none';
-
 	export let popUpActive: boolean;
 </script>
 

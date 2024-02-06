@@ -1,32 +1,13 @@
-<script lang="ts">
-	import { PUBLIC_LISTE1_UID, PUBLIC_LISTE2_UID } from '$env/static/public';
-	import { env } from '$env/dynamic/public';
-	import Button from '$lib/components/Button.svelte';
-	import CardListeux from '$lib/components/CardListeux.svelte';
-	import { ChurrosClient } from '@inp-net/churros-client';
-	import type { PageData } from './$types';
-	import { onMount } from 'svelte';
-	import { selectedListe, userUid, userPhoneNumber } from './stores';
-	import logo from '$lib/asset/listophoneLogo.png';
-	import PopUpWarning from '$lib/components/PopUpWarning.svelte';
+<script context="module" lang="ts">
 
-	export let data: PageData;
-
-	let liste1: any;
-	let liste2: any;
-	onMount(() => {
-		({ liste1, liste2 } = data.data);
-	});
-
-	//definition de type redondante ça doit dégager.
-	interface groups {
+	export interface groups {
 		group: {
 			uid: string;
 			name: string;
 		};
 	}
 
-	interface user {
+	export interface user {
 		member: {
 			pictureFile: string;
 			firstName: string;
@@ -40,12 +21,48 @@
 		};
 	}
 
-	interface groupListe {
+	export interface groupListe {
 		pictureFile: string;
 		name: string;
 		color: string;
 		members: user[];
 	}
+
+	export enum Roles {
+		president,
+		vicepresidient,
+		tresorier,
+		secretaire,
+		membre
+	};
+
+</script>
+
+<script lang="ts">
+	import { PUBLIC_LISTE1_UID, PUBLIC_LISTE2_UID } from '$env/static/public';
+	import { env } from '$env/dynamic/public';
+	import Button from '$lib/components/Button.svelte';
+	import CardListeux from '$lib/components/CardListeux.svelte';
+	import { ChurrosClient } from '@inp-net/churros-client';
+	import type { PageData } from './$types';
+	import { onMount } from 'svelte';
+	import { selectedListe, userUid, userPhoneNumber, index } from './stores';
+	import logo from '$lib/asset/listophoneLogo.png';
+	import PopUpWarning from '$lib/components/PopUpWarning.svelte';
+
+	export let data: PageData;
+
+	let SelectedRoleListe1 : Roles;
+	let SelectedRoleListe2 : Roles;
+
+	let liste1: any;
+	let liste2: any;
+	onMount(() => {
+		({ liste1, liste2 } = data.data);
+	});
+
+	//definition de type redondante ça doit dégager.
+	
 
 	//lien entre le listophone et Churros par l'oauth (page initiale pour lier le compte churros au site)
 	const churrosLoginURL = new ChurrosClient({
@@ -60,7 +77,6 @@
 		}
 	});
 
-	let index: number = 0;
 	let popUpActive: boolean = true;
 
 	//initalisation avec toutes les données vides pour pas vexer typeScript
@@ -92,11 +108,11 @@
 	};
 
 	$: if ($selectedListe === 1) {
-		selectedUser = liste1.members[index];
+		selectedUser = liste1.members[$index];
 		userUid.set(selectedUser.member.uid);
 		userPhoneNumber.set(selectedUser.member.phone);
 	} else if ($selectedListe === 2) {
-		selectedUser = liste2.members[index];
+		selectedUser = liste2.members[$index];
 		userUid.set(selectedUser.member.uid);
 		userPhoneNumber.set(selectedUser.member.phone);
 	}
@@ -127,14 +143,39 @@
 	{/if}
 	<CardListeux selectedUser={test}></CardListeux>
 	<div id="buttonUniqueListe">
-		<Button type="randomizer" class="styleListe1" {liste1} bind:index
-			>Listeux {PUBLIC_LISTE1_UID}</Button
-		>
-		<Button type="randomizer" class="styleListe2" {liste2} bind:index
-			>Listeux {PUBLIC_LISTE2_UID}</Button
-		>
+		<div class="combo-button styleListe1">
+			<label>
+				<div class="deploySelectButton"> + </div>
+				<select name = "choixRole" bind:value={SelectedRoleListe1}>
+					<option value="Prez" selected>Président</option>
+					<option value="VP">Vice-Président</option>
+					<option value="Trez">Trésorier</option>
+					<option value="Secretaire">Secrétaire</option>
+					<option value="Membre">Membre</option>
+				</select>
+			</label>
+			<Button type="randomizer" class="styleListe1" {liste1}
+				>Listeux {PUBLIC_LISTE1_UID}
+			</Button>			
+		</div>
+		
+		<div class="combo-button styleListe2">
+			<label>
+				<div class="deploySelectButton"> + </div>
+					<select name = "choixRole" bind:value={SelectedRoleListe2}>
+						<option value="Prez" selected>Président</option>
+						<option value="VP">Vice-Président</option>
+						<option value="Trez">Trésorier</option>
+						<option value="Secretaire">Secrétaire</option>
+						<option value="Membre">Membre</option>
+					</select>
+			</label>
+			<Button type="randomizer" class="styleListe2" {liste2}
+				>Listeux {PUBLIC_LISTE2_UID}</Button
+			>
+		</div>
 	</div>
-	<Button type="randomizer" {liste1} {liste2} bind:index>Listeux quelconque</Button>
+	<Button type="randomizer" {liste1} {liste2}>Listeux quelconque</Button>
 	<footer>
 		Developped by <a href="https://churros.inpt.fr/groups/pan7on/">Pan7on</a> &
 		<a href="https://churros.inpt.fr/groups/net7-n7/">net7</a>
@@ -222,6 +263,8 @@
 		background: white;
 		font-weight: bold;
 	}
+
+	
 
 	footer {
 		position: flex;
