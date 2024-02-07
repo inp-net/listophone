@@ -62,22 +62,20 @@
 		display: flex;
 	}
 	button {
-		margin: 0.4rem;
-		padding: 0.4rem;
-		padding-left: 0.8rem;
-		padding-right: 0.8rem;
 		font-size: 1.25em;
 		border-radius: 0.3rem;
 		background: var(--primary-color);
 		border: 0;
-		max-width: 130px;
+		gap: 0.3rem;
+		width: 130px;
 		text-decoration: none;
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		gap: 0.5em;
 		background-color: var(--neutral-bg-color);
 		color: var(--neutral-text-color);
+
+		padding: 0.3rem;
 
 		&.styleListe1 {
 			color: var(--liste1-text-color);

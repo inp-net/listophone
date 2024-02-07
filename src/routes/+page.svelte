@@ -35,7 +35,6 @@
 		secretaire,
 		membre
 	};
-
 </script>
 
 <script lang="ts">
@@ -49,11 +48,9 @@
 	import { selectedListe, userUid, userPhoneNumber, index } from './stores';
 	import logo from '$lib/asset/listophoneLogo.png';
 	import PopUpWarning from '$lib/components/PopUpWarning.svelte';
+	import ComboButton from '$lib/components/ComboButton.svelte';
 
 	export let data: PageData;
-
-	let SelectedRoleListe1 : Roles;
-	let SelectedRoleListe2 : Roles;
 
 	let liste1: any;
 	let liste2: any;
@@ -82,7 +79,7 @@
 	//initalisation avec toutes les données vides pour pas vexer typeScript
 	let selectedUser: user = {
 		member: {
-			pictureFile: 'Aucune',
+			pictureFile: '',
 			firstName: '??',
 			lastName: '??',
 			uid: '??',
@@ -119,6 +116,9 @@
 	let test: any; //extremement sus, doit être changé ou a envoyer a movaicode. au choix quoi.
 	//pour ceux qui lirons peut être ce code à l'avenir je suis désolé mdrrrrrrrr
 	$: test = selectedUser;
+
+	//$:console.log(liste1);
+	//$:console.log(liste2);
 </script>
 
 <section>
@@ -143,39 +143,16 @@
 	{/if}
 	<CardListeux selectedUser={test}></CardListeux>
 	<div id="buttonUniqueListe">
-		<div class="combo-button styleListe1">
-			<label>
-				<div class="deploySelectButton"> + </div>
-				<select name = "choixRole" bind:value={SelectedRoleListe1}>
-					<option value="Prez" selected>Président</option>
-					<option value="VP">Vice-Président</option>
-					<option value="Trez">Trésorier</option>
-					<option value="Secretaire">Secrétaire</option>
-					<option value="Membre">Membre</option>
-				</select>
-			</label>
-			<Button type="randomizer" class="styleListe1" {liste1}
-				>Listeux {PUBLIC_LISTE1_UID}
-			</Button>			
-		</div>
+		<Button type="randomizer" class="styleListe1" {liste1}
+			>Listeux {PUBLIC_LISTE1_UID}
+		</Button>			
 		
-		<div class="combo-button styleListe2">
-			<label>
-				<div class="deploySelectButton"> + </div>
-					<select name = "choixRole" bind:value={SelectedRoleListe2}>
-						<option value="Prez" selected>Président</option>
-						<option value="VP">Vice-Président</option>
-						<option value="Trez">Trésorier</option>
-						<option value="Secretaire">Secrétaire</option>
-						<option value="Membre">Membre</option>
-					</select>
-			</label>
-			<Button type="randomizer" class="styleListe2" {liste2}
-				>Listeux {PUBLIC_LISTE2_UID}</Button
-			>
-		</div>
+		<Button type="randomizer" class="styleListe2" {liste2}
+			>Listeux {PUBLIC_LISTE2_UID}
+		</Button>
 	</div>
 	<Button type="randomizer" {liste1} {liste2}>Listeux quelconque</Button>
+	<ComboButton liste={liste1}></ComboButton>
 	<footer>
 		Developped by <a href="https://churros.inpt.fr/groups/pan7on/">Pan7on</a> &
 		<a href="https://churros.inpt.fr/groups/net7-n7/">net7</a>
@@ -223,6 +200,7 @@
 		justify-content: center;
 		align-items: center;
 
+		overflow: auto;
 		background: rgba(112, 110, 110, 0.4);
 	}
 

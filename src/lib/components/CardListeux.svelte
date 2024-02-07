@@ -3,7 +3,6 @@
     import Button from "./Button.svelte";
     import user from '../../routes/+page.svelte'
     import noProfilPicture from '../asset/no-profile-picture.webp'
-
 	import { selectedListe, userPhoneNumber } from '../../routes/stores';
 	import { PUBLIC_LISTE1_UID, PUBLIC_LISTE2_UID } from '$env/static/public';
 
