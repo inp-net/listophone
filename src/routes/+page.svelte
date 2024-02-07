@@ -152,7 +152,7 @@
 		</Button>
 	</div>
 	<Button type="randomizer" {liste1} {liste2}>Listeux quelconque</Button>
-	<ComboButton liste={liste1}></ComboButton>
+	<!-- <ComboButton liste={liste1}></ComboButton> -->
 	<footer>
 		Developped by <a href="https://churros.inpt.fr/groups/pan7on/">Pan7on</a> &
 		<a href="https://churros.inpt.fr/groups/net7-n7/">net7</a>
