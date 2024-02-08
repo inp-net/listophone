@@ -18,63 +18,56 @@
             styleListe = "styleListe2";
         } 
     }
-    let listUserWithRolePrez : user[] = [];
-    let listUserWithRoleVP : user[] = [];
-    let listUserWithRoleTreasurer : user[] = [];
-    let listUserWithRoleSecretary : user[] = [];
-    let listeFiltered : groupListe = structuredClone(liste);
+
+    let listUserIndexWithRolePrez : number[] = [];
+    let listUserIndexWithRoleVP : number[] = [];
+    let listUserIndexWithRoleTreasurer : number[] = [];
+    let listUserIndexWithRoleSecretary : number[] = [];
+    let listUserIndexAll : number[] = [];
+    let listIndexFiltered : number[] = [];
+
+    console.log(liste);
 
     //Filtrage des tableau de membres des listes selon leur role.
         
     for(let i = 0; i < liste.members.length; i++){
         if(liste.members[i].member.groups.some((n : groups) => n.group.name === liste.name && n.president === true)){
-            listUserWithRolePrez.push(liste.members[i]);
+            listUserIndexWithRolePrez.push(i);            
         }
         if(liste.members[i].member.groups.some((n : groups) => n.group.name === liste.name && n.vicePresident === true)){
-            listUserWithRoleVP.push(liste.members[i]);
+            listUserIndexWithRoleVP.push(i);            
         }
         if(liste.members[i].member.groups.some((n : groups) => n.group.name === liste.name && n.treasurer === true)){
-            listUserWithRoleTreasurer.push(liste.members[i]);
+            listUserIndexWithRoleTreasurer.push(i);            
         }
         if(liste.members[i].member.groups.some((n : groups) => n.group.name === liste.name && n.secretary === true)){
-            listUserWithRoleSecretary.push(liste.members[i]);
+            listUserIndexWithRoleSecretary.push(i);            
         }
+        listUserIndexAll.push(i);
     }
 
     $:switch(selectedRoleListe){
         case("Président"):{
-            //console.log("prez")
-            listeFiltered.members = listUserWithRolePrez;
-            console.log(listeFiltered.members);
+            listIndexFiltered = listUserIndexWithRolePrez;
             break;
         }
         case("Vice-Prez"):{
-            //console.log("vp")
-            listeFiltered.members = listUserWithRoleVP;
-            console.log(listeFiltered.members);
+            listIndexFiltered = listUserIndexWithRoleVP;
             break;
         }
         case("Trésorier"):{
-            //console.log("ez")
-            listeFiltered.members = listUserWithRoleTreasurer;
-            console.log(listeFiltered.members);
+            listIndexFiltered = listUserIndexWithRoleTreasurer;
             break;
         }
         case("Secrétaire"):{
-            //console.log("secr")
-            listeFiltered.members = listUserWithRoleSecretary;
-            console.log(listeFiltered.members);
+            listIndexFiltered = listUserIndexWithRoleSecretary;
             break;
         }
         case("Membre"):{
-            listeFiltered.members = liste.members;
-            console.log(listeFiltered.members);
+            listIndexFiltered = listUserIndexAll;
             break;
         }
     }
-    //$:console.log(liste.members);
-    //$:console.log(listeFiltered, liste.members);
-    //console.log(listUserWithRolePrez, listUserWithRoleSecretary, listUserWithRoleTreasurer, listUserWithRoleVP)
 
 </script>
     {#if liste !== undefined}
@@ -89,7 +82,7 @@
                 </select>
             </label>
             <div class="elem-button">
-                <Button type="randomizer" class="styleListe1" liste1={listeFiltered}
+                <Button type="randomizer-unique" class="styleListe1" liste1={liste} listPossibleMember={listIndexFiltered}
                     >{selectedRoleListe} {liste.name}
                 </Button>	
             </div>		

@@ -7,9 +7,10 @@
 	let theme: 'styleListe1' | 'styleListe2' | undefined = undefined;
 	export { theme as class };
 
+	export let listPossibleMember : number[] | undefined = undefined;
 	export let liste1: groupListe | undefined = undefined;
 	export let liste2: groupListe | undefined = undefined;
-	export let type: 'randomizer' | 'call' | 'redirect';
+	export let type: 'randomizer' | 'call' | 'redirect' | 'randomizer-unique';
 
 	function selectRandomListe() {
 		if (liste1 !== undefined && liste2 === undefined) {
@@ -31,6 +32,14 @@
 			index.set(Math.floor(Math.random() * (liste2.members.length - 1)));
 		}
 	}
+
+	function selectRandomUserIndex(){
+		selectRandomListe();
+		if(listPossibleMember !== undefined){
+			index.set(listPossibleMember[Math.floor(Math.random() * (listPossibleMember.length))]);
+		}
+	}
+
 </script>
 
 <div class="composant">
@@ -40,6 +49,9 @@
 			switch (type) {
 				case 'randomizer':
 					selectRandomUser();
+					break;
+				case 'randomizer-unique':
+					selectRandomUserIndex();
 					break;
 				case 'call':
 					window.open(`tel:${$userPhoneNumber}`);
