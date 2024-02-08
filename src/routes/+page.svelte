@@ -38,6 +38,7 @@
 	export interface groupListe {
 		pictureFile: string;
 		name: string;
+		uid: string;
 		color: string;
 		members: user[];
 	}
@@ -130,8 +131,6 @@
 	//pour ceux qui lirons peut être ce code à l'avenir je suis désolé mdrrrrrrrr
 	$: test = selectedUser;
 
-	//$:console.log(liste1);
-	//$:console.log(liste2);
 </script>
 
 <section>
@@ -156,16 +155,10 @@
 	{/if}
 	<CardListeux selectedUser={test}></CardListeux>
 	<div id="buttonUniqueListe">
-		<Button type="randomizer" class="styleListe1" {liste1}
-			>Listeux {PUBLIC_LISTE1_UID}
-		</Button>			
-		
-		<Button type="randomizer" class="styleListe2" {liste2}
-			>Listeux {PUBLIC_LISTE2_UID}
-		</Button>
+		<ComboButton liste={liste1} class="styleListe1"></ComboButton>
+		<ComboButton liste={liste2} class="styleListe2"></ComboButton>
 	</div>
 	<Button type="randomizer" {liste1} {liste2}>Listeux quelconque</Button>
-	<ComboButton liste={liste1} ></ComboButton>
 	<footer>
 		Developed by <a href="https://churros.inpt.fr/groups/net7-n7/">net7</a>
 	</footer>

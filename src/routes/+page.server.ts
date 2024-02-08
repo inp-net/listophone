@@ -30,6 +30,7 @@ interface user {
 interface groupListe {
 	pictureFile: string;
 	name: string;
+	uid: string;
 	color: string;
 	members: user[];
 }
@@ -81,6 +82,7 @@ export const load: PageServerLoad = async ({ cookies }) => {
 
             fragment Liste on Group {
                 pictureFile
+				uid
                 name
                 color
                 members { 

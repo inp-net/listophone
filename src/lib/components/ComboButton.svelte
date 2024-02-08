@@ -1,7 +1,6 @@
 <script lang="ts">
     import type { groupListe } from "../../routes/+page.svelte";
     import type { groups } from "../../routes/+page.svelte";
-    import type { user } from "../../routes/+page.svelte";
     import { PUBLIC_LISTE1_UID, PUBLIC_LISTE2_UID } from "$env/static/public";
     import Button from "./Button.svelte";
 
@@ -11,11 +10,14 @@
 
     let styleListe : string;
     let selectedRoleListe : string = "Membre";
+    let selectedListe1 : Boolean;
     $:if(liste !== undefined){
-        if(liste.name == PUBLIC_LISTE1_UID){
+        if(liste.uid == PUBLIC_LISTE1_UID){
             styleListe = "styleListe1";
-        }else if(liste.name == PUBLIC_LISTE2_UID){
+            selectedListe1 = true;
+        }else if(liste.uid == PUBLIC_LISTE2_UID){
             styleListe = "styleListe2";
+            selectedListe1 = false;
         } 
     }
 
@@ -26,10 +28,7 @@
     let listUserIndexAll : number[] = [];
     let listIndexFiltered : number[] = [];
 
-    console.log(liste);
-
     //Filtrage des tableau de membres des listes selon leur role.
-        
     for(let i = 0; i < liste.members.length; i++){
         if(liste.members[i].member.groups.some((n : groups) => n.group.name === liste.name && n.president === true)){
             listUserIndexWithRolePrez.push(i);            
@@ -71,7 +70,7 @@
 
 </script>
     {#if liste !== undefined}
-        <div class="combo-button">
+        <div class="combo-button {theme}">
             <label>
                 <select name = "choixRole" bind:value={selectedRoleListe}>
                     <option value="Membre" selected>Membre</option>
@@ -82,9 +81,15 @@
                 </select>
             </label>
             <div class="elem-button">
-                <Button type="randomizer-unique" class="styleListe1" liste1={liste} listPossibleMember={listIndexFiltered}
+                {#if selectedListe1}
+                <Button type="randomizer-unique" class={theme} liste1={liste} listPossibleMember={listIndexFiltered}
                     >{selectedRoleListe} {liste.name}
-                </Button>	
+                </Button>
+                {:else}
+                <Button type="randomizer-unique" class={theme} liste2={liste} listPossibleMember={listIndexFiltered}
+                    >{selectedRoleListe} {liste.name}
+                </Button>
+                {/if}
             </div>		
         </div>
     {/if}
@@ -99,6 +104,15 @@
 		font-size: 1em;
 		border-radius: 0.3rem;
 		background: var(--liste1-bg-color);
+        &.styleListe1 {
+			background: var(--liste1-bg-color);
+			color: var(--liste1-text-color);
+		}
+
+		&.styleListe2 {
+			background: var(--liste2-bg-color);
+			color: var(--liste2-text-color);
+		}
 		border: 0;
 
         select {
@@ -115,24 +129,12 @@
             background-size: contain;
             color: transparent; 
 
-            select:hover{
-                background-color: red;
-            }
         }
 
         .elem-button{
             border-left: 1px solid rgb(189, 189, 189);
         }
 
-        &.styleListe1 {
-			background: var(--liste1-bg-color);
-			color: var(--liste1-text-color);
-		}
-
-		&.styleListe2 {
-			background: var(--liste2-bg-color);
-			color: var(--liste2-text-color);
-		}
     }
 
     label{
