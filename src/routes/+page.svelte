@@ -1,9 +1,23 @@
 <script context="module" lang="ts">
 
+	enum GroupType {
+		Association = "Association",
+		Club = "Club",
+		Group = "Group",
+		Integration = "Integration",
+		StudentAssociationSection = "StudentASsociationSection",
+		List = "List"
+	};	
+
 	export interface groups {
+		president : boolean;
+		treasurer : boolean;
+		vicePresident : boolean;
+		secretary : boolean;
 		group: {
 			uid: string;
 			name: string;
+			type : GroupType;
 		};
 	}
 
@@ -28,13 +42,6 @@
 		members: user[];
 	}
 
-	export enum Roles {
-		president,
-		vicepresidient,
-		tresorier,
-		secretaire,
-		membre
-	};
 </script>
 
 <script lang="ts">
@@ -52,11 +59,7 @@
 
 	export let data: PageData;
 
-	let liste1: any;
-	let liste2: any;
-	onMount(() => {
-		({ liste1, liste2 } = data.data);
-	});
+	$: ({ liste1, liste2 } = data.data);
 
 	//definition de type redondante ça doit dégager.
 	
@@ -88,15 +91,25 @@
 			},
 			groups: [
 				{
+					president: false,
+					treasurer: false,
+					vicePresident: false,
+					secretary: false,
 					group: {
 						uid: '1',
-						name: 'Group 1'
+						name: 'Group 1',
+						type: GroupType.Association
 					}
 				},
 				{
+					president: false,
+					treasurer: false,
+					vicePresident: false,
+					secretary: false,
 					group: {
 						uid: '2',
-						name: 'Group 2'
+						name: 'Group 2',
+						type: GroupType.Group
 					}
 				}
 			],
@@ -152,10 +165,9 @@
 		</Button>
 	</div>
 	<Button type="randomizer" {liste1} {liste2}>Listeux quelconque</Button>
-	<!-- <ComboButton liste={liste1}></ComboButton> -->
+	<ComboButton liste={liste1} ></ComboButton>
 	<footer>
-		Developped by <a href="https://churros.inpt.fr/groups/pan7on/">Pan7on</a> &
-		<a href="https://churros.inpt.fr/groups/net7-n7/">net7</a>
+		Developed by <a href="https://churros.inpt.fr/groups/net7-n7/">net7</a>
 	</footer>
 </section>
 

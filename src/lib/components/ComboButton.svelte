@@ -1,37 +1,95 @@
 <script lang="ts">
-    import type { Roles } from "../../routes/+page.svelte";
     import type { groupListe } from "../../routes/+page.svelte";
+    import type { groups } from "../../routes/+page.svelte";
+    import type { user } from "../../routes/+page.svelte";
     import { PUBLIC_LISTE1_UID, PUBLIC_LISTE2_UID } from "$env/static/public";
     import Button from "./Button.svelte";
 
     export let liste: groupListe;
-    let theme: 'styleListe1' | 'styleListe2'
+    let theme: 'styleListe1' | 'styleListe2' | undefined = undefined;
 	export { theme as class };
 
     let styleListe : string;
-    let selectedRoleListe : string = "uwu";
+    let selectedRoleListe : string = "Membre";
     $:if(liste !== undefined){
         if(liste.name == PUBLIC_LISTE1_UID){
-        styleListe = "styleListe1";
+            styleListe = "styleListe1";
         }else if(liste.name == PUBLIC_LISTE2_UID){
             styleListe = "styleListe2";
         } 
     }
+    let listUserWithRolePrez : user[] = [];
+    let listUserWithRoleVP : user[] = [];
+    let listUserWithRoleTreasurer : user[] = [];
+    let listUserWithRoleSecretary : user[] = [];
+    let listeFiltered : groupListe = structuredClone(liste);
+
+    //Filtrage des tableau de membres des listes selon leur role.
+        
+    for(let i = 0; i < liste.members.length; i++){
+        if(liste.members[i].member.groups.some((n : groups) => n.group.name === liste.name && n.president === true)){
+            listUserWithRolePrez.push(liste.members[i]);
+        }
+        if(liste.members[i].member.groups.some((n : groups) => n.group.name === liste.name && n.vicePresident === true)){
+            listUserWithRoleVP.push(liste.members[i]);
+        }
+        if(liste.members[i].member.groups.some((n : groups) => n.group.name === liste.name && n.treasurer === true)){
+            listUserWithRoleTreasurer.push(liste.members[i]);
+        }
+        if(liste.members[i].member.groups.some((n : groups) => n.group.name === liste.name && n.secretary === true)){
+            listUserWithRoleSecretary.push(liste.members[i]);
+        }
+    }
+
+    $:switch(selectedRoleListe){
+        case("Président"):{
+            //console.log("prez")
+            listeFiltered.members = listUserWithRolePrez;
+            console.log(listeFiltered.members);
+            break;
+        }
+        case("Vice-Prez"):{
+            //console.log("vp")
+            listeFiltered.members = listUserWithRoleVP;
+            console.log(listeFiltered.members);
+            break;
+        }
+        case("Trésorier"):{
+            //console.log("ez")
+            listeFiltered.members = listUserWithRoleTreasurer;
+            console.log(listeFiltered.members);
+            break;
+        }
+        case("Secrétaire"):{
+            //console.log("secr")
+            listeFiltered.members = listUserWithRoleSecretary;
+            console.log(listeFiltered.members);
+            break;
+        }
+        case("Membre"):{
+            listeFiltered.members = liste.members;
+            console.log(listeFiltered.members);
+            break;
+        }
+    }
+    //$:console.log(liste.members);
+    //$:console.log(listeFiltered, liste.members);
+    //console.log(listUserWithRolePrez, listUserWithRoleSecretary, listUserWithRoleTreasurer, listUserWithRoleVP)
 
 </script>
     {#if liste !== undefined}
         <div class="combo-button">
             <label>
                 <select name = "choixRole" bind:value={selectedRoleListe}>
-                    <option value="Président">Président</option>
-                    <option value="Vice-Président">Vice-Président</option>
-                    <option value="Trésorier">Trésorier</option>
-                    <option value="Secretaire">Secrétaire</option>
                     <option value="Membre" selected>Membre</option>
+                    <option value="Président">Président</option>
+                    <option value="Vice-Prez">Vice-Président</option>
+                    <option value="Trésorier">Trésorier</option>
+                    <option value="Secrétaire">Secrétaire</option>
                 </select>
             </label>
             <div class="elem-button">
-                <Button type="randomizer" class="styleListe1" liste1={liste}
+                <Button type="randomizer" class="styleListe1" liste1={listeFiltered}
                     >{selectedRoleListe} {liste.name}
                 </Button>	
             </div>		
