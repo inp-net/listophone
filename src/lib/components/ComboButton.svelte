@@ -11,6 +11,7 @@
     let styleListe : string;
     let selectedRoleListe : string = "Membre";
     let selectedListe1 : Boolean;
+    let listPossibleMemberEmpty : Boolean;
     $:if(liste !== undefined){
         if(liste.uid == PUBLIC_LISTE1_UID){
             styleListe = "styleListe1";
@@ -29,20 +30,23 @@
     let listIndexFiltered : number[] = [];
 
     //Filtrage des tableau de membres des listes selon leur role.
-    for(let i = 0; i < liste.members.length; i++){
-        if(liste.members[i].member.groups.some((n : groups) => n.group.name === liste.name && n.president === true)){
-            listUserIndexWithRolePrez.push(i);            
-        }
-        if(liste.members[i].member.groups.some((n : groups) => n.group.name === liste.name && n.vicePresident === true)){
-            listUserIndexWithRoleVP.push(i);            
-        }
-        if(liste.members[i].member.groups.some((n : groups) => n.group.name === liste.name && n.treasurer === true)){
-            listUserIndexWithRoleTreasurer.push(i);            
-        }
-        if(liste.members[i].member.groups.some((n : groups) => n.group.name === liste.name && n.secretary === true)){
-            listUserIndexWithRoleSecretary.push(i);            
-        }
+    if(liste !== undefined){
+        for(let i = 0; i < liste.members.length; i++){
+            if(liste.members[i].member.groups.some((n : groups) => n.group.name === liste.name && n.president === true)){
+                listUserIndexWithRolePrez.push(i);            
+            }
+            if(liste.members[i].member.groups.some((n : groups) => n.group.name === liste.name && n.vicePresident === true)){
+                listUserIndexWithRoleVP.push(i);            
+            }
+            if(liste.members[i].member.groups.some((n : groups) => n.group.name === liste.name && n.treasurer === true)){
+                listUserIndexWithRoleTreasurer.push(i);            
+            }
+            if(liste.members[i].member.groups.some((n : groups) => n.group.name === liste.name && n.secretary === true)){
+                listUserIndexWithRoleSecretary.push(i);            
+            }
         listUserIndexAll.push(i);
+    }
+
     }
 
     $:switch(selectedRoleListe){

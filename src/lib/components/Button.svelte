@@ -12,6 +12,9 @@
 	export let liste2: groupListe | undefined = undefined;
 	export let type: 'randomizer' | 'call' | 'redirect' | 'randomizer-unique';
 
+	let listPossibleMemberEmpty : boolean
+	$:listPossibleMemberEmpty = (listPossibleMember === undefined || listPossibleMember.length === 0);
+
 	function selectRandomListe() {
 		if (liste1 !== undefined && liste2 === undefined) {
 			selectedListe.set(1);
@@ -45,6 +48,7 @@
 <div class="composant">
 	<button
 		class={theme}
+		disabled={listPossibleMemberEmpty}
 		on:click={() => {
 			switch (type) {
 				case 'randomizer':
