@@ -45,8 +45,7 @@
                 listUserIndexWithRoleSecretary.push(i);            
             }
         listUserIndexAll.push(i);
-    }
-
+        }
     }
 
     $:switch(selectedRoleListe){
@@ -72,16 +71,27 @@
         }
     }
 
+
 </script>
     {#if liste !== undefined}
         <div class="combo-button {theme}">
             <label>
                 <select name = "choixRole" bind:value={selectedRoleListe}>
-                    <option value="Membre" selected>Membre</option>
-                    <option value="Président">Président</option>
-                    <option value="Vice-Prez">Vice-Président</option>
-                    <option value="Trésorier">Trésorier</option>
-                    <option value="Secrétaire">Secrétaire</option>
+                    {#if listUserIndexAll.length > 0}
+                        <option value="Membre" selected>Membre</option>
+                    {/if}
+                    {#if listUserIndexWithRolePrez.length > 0}
+                        <option value="Président">Président</option>
+                    {/if}
+                    {#if listUserIndexWithRoleVP.length > 0}
+                        <option value="Vice-Prez">Vice-Président</option>
+                    {/if}
+                    {#if listUserIndexWithRoleTreasurer.length > 0}
+                        <option value="Trésorier">Trésorier</option>
+                    {/if}
+                    {#if listUserIndexWithRoleSecretary.length > 0}
+                        <option value="Secrétaire">Secrétaire</option>
+                    {/if}
                 </select>
             </label>
             <div class="elem-button">
