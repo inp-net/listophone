@@ -109,7 +109,7 @@
 					secretary: false,
 					group: {
 						uid: '2',
-						name: '',
+						name: '7Fault',
 						type: GroupType.Group
 					}
 				}
