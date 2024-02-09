@@ -7,7 +7,7 @@
 	let theme: 'styleListe1' | 'styleListe2' | undefined = undefined;
 	export { theme as class };
 
-	export let listPossibleMember : number[] | undefined = undefined;
+	export let listPossibleMember : number[] | undefined = [0];
 	export let liste1: groupListe | undefined = undefined;
 	export let liste2: groupListe | undefined = undefined;
 	export let type: 'randomizer' | 'call' | 'redirect' | 'randomizer-unique';
@@ -80,7 +80,6 @@
 	button {
 		font-size: 1.25em;
 		border-radius: 0.3rem;
-		background: var(--primary-color);
 		border: 0;
 		gap: 0.3rem;
 		width: 130px;
@@ -93,14 +92,31 @@
 
 		padding: 0.3rem;
 
+		cursor: pointer;
+		&.comboButton{
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+		}
+
 		&.styleListe1 {
 			color: var(--liste1-text-color);
 			background: var(--liste1-bg-color);
+			&:hover{
+				background: var(--liste1-bg-color-hover);
+			}
 		}
 
 		&.styleListe2 {
 			color: var(--liste2-text-color);
 			background: var(--liste2-bg-color);
+			&:hover{
+				background: var(--liste2-bg-color-hover);
+			}
 		}
+
+		&:hover{
+				background: var(--neutral-bg-color-hover);
+			}
+		
 	}
 </style>

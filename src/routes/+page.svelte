@@ -84,11 +84,11 @@
 	let selectedUser: user = {
 		member: {
 			pictureFile: '',
-			firstName: '??',
-			lastName: '??',
-			uid: '??',
+			firstName: 'John',
+			lastName: 'Doe',
+			uid: 'doej',
 			major: {
-				shortName: '??'
+				shortName: 'SN'
 			},
 			groups: [
 				{
@@ -98,7 +98,7 @@
 					secretary: false,
 					group: {
 						uid: '1',
-						name: 'Group 1',
+						name: 'tvCAnet7',
 						type: GroupType.Association
 					}
 				},
@@ -109,7 +109,7 @@
 					secretary: false,
 					group: {
 						uid: '2',
-						name: 'Group 2',
+						name: '',
 						type: GroupType.Group
 					}
 				}
@@ -206,7 +206,7 @@
 		align-items: center;
 
 		overflow: auto;
-		background: rgba(112, 110, 110, 0.4);
+		background: var(--popUp-bg);
 	}
 
 	.rules {

@@ -108,6 +108,7 @@
 		font-size: 1em;
 		border-radius: 0.3rem;
 		background: var(--liste1-bg-color);
+
         &.styleListe1 {
 			background: var(--liste1-bg-color);
 			color: var(--liste1-text-color);
@@ -131,8 +132,9 @@
             background-position: center;
             background-repeat: no-repeat;
             background-size: contain;
-            color: transparent; 
+            color: transparent;
 
+            cursor: pointer;
         }
 
         .elem-button{
