@@ -48,7 +48,7 @@
 
 <style lang="scss">
 	.card {
-		padding-bottom: 0.5rem;
+		padding-bottom: 0.8rem;
 		border-radius: 20px;
 		background: var(--bg);
 		width: 22rem;

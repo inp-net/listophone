@@ -98,7 +98,7 @@
 					secretary: false,
 					group: {
 						uid: '1',
-						name: 'tvCAnet7',
+						name: 'TVCAnet7',
 						type: GroupType.Association
 					}
 				},
