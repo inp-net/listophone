@@ -6,7 +6,7 @@
 	<h1>Bienvenue sur le listophone ! La platforme des allos de l'N7 !</h1>
 
 	<p>
-		Avant de vous laissez selectionner un 1A pour vos allos quelques petits rappels sur les règles :
+		Avant de vous laisser sélectionner un 1A pour vos allos quelques petits rappels sur les règles :
 	</p>
 	<ul>
 		<li>
@@ -20,7 +20,7 @@
 		<li><strong>Informer</strong> : Les listeux doivent être au courant de tout avant de venir</li>
 	</ul>
 	<p>
-		Le non respect de ces règles entrainera des sanctions (mais vous êtes pas des enculés hein :) )
+		Le non-respect de ces règles entrainera des sanctions (mais vous êtes pas des enculés hein :) )
 	</p>
 	<button
 		on:click={() => {
