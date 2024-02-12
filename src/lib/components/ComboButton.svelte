@@ -132,9 +132,9 @@
 
         select {
             height: 3.5rem;
-            width: 2.1rem;
-            padding-left: 0.5rem;
-            padding-right: 0.5rem;
+            width: 0rem;
+            padding-left: 1rem;
+            padding-right: 1rem;
 
             border:none;
             background-color: transparent;
@@ -142,10 +142,13 @@
             background-position: center;
             background-repeat: no-repeat;
             background-size: contain;
-            color: transparent;
+            color: black;
+            appearance: none;
 
             cursor: pointer;
         }
+
+
 
         .elem-button{
             border-left: 1px solid rgb(189, 189, 189);
