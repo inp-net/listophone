@@ -131,7 +131,7 @@
         height: 8rem;
         gap: 0.5rem;
         margin: 1em 0;
-        overflow: scroll;
+        overflow: auto;
 
     }
 	.actions {
