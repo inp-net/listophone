@@ -5,16 +5,28 @@
 	import { index } from "../../routes/stores";
 	import type { ListSeparator } from 'sass';
 
-	let theme: 'styleListe1' | 'styleListe2' | undefined = undefined;
-	export { theme as class };
+	
 
-	export let listPossibleMember : number[] | undefined = [0];
-	export let liste1: groupListe | undefined = undefined;
-	export let liste2: groupListe | undefined = undefined;
-	export let type: 'randomizer' | 'call' | 'redirect' | 'randomizer-unique';
+	interface Props {
+		class?: 'styleListe1' | 'styleListe2' | undefined;
+		listPossibleMember?: number[] | undefined;
+		liste1?: groupListe | undefined;
+		liste2?: groupListe | undefined;
+		type: 'randomizer' | 'call' | 'redirect' | 'randomizer-unique';
+		children?: import('svelte').Snippet;
+	}
 
-	let listPossibleMemberEmpty : boolean
-	$:listPossibleMemberEmpty = (listPossibleMember === undefined || listPossibleMember.length === 0);
+	let {
+		class: theme = undefined,
+		listPossibleMember = [0],
+		liste1 = undefined,
+		liste2 = undefined,
+		type,
+		children
+	}: Props = $props();
+
+	let listPossibleMemberEmpty : boolean = $derived(listPossibleMember === undefined || listPossibleMember.length === 0)
+	
 
 	function selectRandomListe() {
 		if (liste1 !== undefined && liste2 === undefined) {
@@ -50,7 +62,7 @@
 	<button
 		class={theme}
 		disabled={listPossibleMemberEmpty}
-		on:click={() => {
+		onclick={() => {
 			switch (type) {
 				case 'randomizer':
 					selectRandomUser();
@@ -70,7 +82,7 @@
 		{#if type === 'call'}
 			<Icon icon="mdi:phone" />
 		{/if}
-		<slot />
+		{@render children?.()}
 	</button>
 </div>
 

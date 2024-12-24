@@ -2,9 +2,14 @@
 	import type { LayoutData } from './$types';
 	import '../style/app.scss';
 
-	export let data: LayoutData;
+	interface Props {
+		data: LayoutData;
+		children?: import('svelte').Snippet;
+	}
+
+	let { data, children }: Props = $props();
 </script>
 
 <main>
-	<slot />
+	{@render children?.()}
 </main>

@@ -1,50 +1,3 @@
-<script context="module" lang="ts">
-
-	enum GroupType {
-		Association = "Association",
-		Club = "Club",
-		Group = "Group",
-		Integration = "Integration",
-		StudentAssociationSection = "StudentASsociationSection",
-		List = "List"
-	};	
-
-	export interface groups {
-		president : boolean;
-		treasurer : boolean;
-		vicePresident : boolean;
-		secretary : boolean;
-		group: {
-			uid: string;
-			name: string;
-			type : GroupType;
-		};
-	}
-
-	export interface user {
-		member: {
-			pictureFile: string;
-			firstName: string;
-			lastName: string;
-			uid: string;
-			major: {
-				shortName: string;
-			};
-			groups: groups[];
-			phone: string;
-		};
-	}
-
-	export interface groupListe {
-		pictureFile: string;
-		name: string;
-		uid: string;
-		color: string;
-		members: user[];
-	}
-
-</script>
-
 <script lang="ts">
 	import { PUBLIC_LISTE1_UID, PUBLIC_LISTE2_UID } from '$env/static/public';
 	import { env } from '$env/dynamic/public';
@@ -58,9 +11,55 @@
 	import PopUpWarning from '$lib/components/PopUpWarning.svelte';
 	import ComboButton from '$lib/components/ComboButton.svelte';
 
-	export let data: PageData;
+	enum GroupType {
+		Association = "Association",
+		Club = "Club",
+		Group = "Group",
+		Integration = "Integration",
+		StudentAssociationSection = "StudentASsociationSection",
+		List = "List"
+	};	
 
-	$: ({ liste1, liste2 } = data.data);
+	interface groups {
+		president : boolean;
+		treasurer : boolean;
+		vicePresident : boolean;
+		secretary : boolean;
+		group: {
+			uid: string;
+			name: string;
+			type : GroupType;
+		};
+	}
+
+	interface user {
+		member: {
+			pictureFile: string;
+			firstName: string;
+			lastName: string;
+			uid: string;
+			major: {
+				shortName: string;
+			};
+			groups: groups[];
+			phone: string;
+		};
+	}
+
+	interface groupListe {
+		pictureFile: string;
+		name: string;
+		uid: string;
+		color: string;
+		members: user[];
+	}
+	interface Props {
+		data: PageData;
+	}
+
+	let { data }: Props = $props();
+
+	let { liste1, liste2 } = $derived(data.data);
 
 	//definition de type redondante ça doit dégager.
 	
@@ -79,10 +78,10 @@
 		}
 	});
 
-	let popUpActive: boolean = true;
+	let popUpActive: boolean = $state(true);
 
 	//initalisation avec toutes les données vides pour pas vexer typeScript
-	let selectedUser: user = {
+	let selectedUser: user = $state({
 		member: {
 			pictureFile: '',
 			firstName: 'John',
@@ -117,20 +116,22 @@
 			],
 			phone: '?'
 		}
-	};
-
-	$: if ($selectedListe === 1) {
-		selectedUser = liste1.members[$index];
-		userUid.set(selectedUser.member.uid);
-		userPhoneNumber.set(selectedUser.member.phone);
-	} else if ($selectedListe === 2) {
-		selectedUser = liste2.members[$index];
-		userUid.set(selectedUser.member.uid);
-		userPhoneNumber.set(selectedUser.member.phone);
-	}
-	let test: any; //extremement sus, doit être changé ou a envoyer a movaicode. au choix quoi.
+	});
+	
+$effect(() => {
+		if ($selectedListe === 1) {
+			selectedUser = liste1.members[$index];
+			userUid.set(selectedUser.member.uid);
+			userPhoneNumber.set(selectedUser.member.phone);
+		} else if ($selectedListe === 2) {
+			selectedUser = liste2.members[$index];
+			userUid.set(selectedUser.member.uid);
+			userPhoneNumber.set(selectedUser.member.phone);
+		}
+	});
+	let test: any = $derived(selectedUser); //extremement sus, doit être changé ou a envoyer a movaicode. au choix quoi.
 	//pour ceux qui lirons peut être ce code à l'avenir je suis désolé mdrrrrrrrr
-	$: test = selectedUser;
+	
 	//$:console.log(liste1.members.length);
 	//$:console.log(liste2.members.length);
 
@@ -148,7 +149,7 @@
 					<li><strong>Informer</strong> : Les listeux doivent tout savoir</li>
 				</ul>
 			</div>
-			<button on:click={() => (popUpActive = true)}>Règles complètes</button>
+			<button onclick={() => (popUpActive = true)}>Règles complètes</button>
 		</div>
 	</header>
 	{#if popUpActive}

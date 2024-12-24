@@ -1,5 +1,9 @@
 <script lang="ts">
-	export let popUpActive: boolean;
+	interface Props {
+		popUpActive: boolean;
+	}
+
+	let { popUpActive = $bindable() }: Props = $props();
 </script>
 
 <div class="rules">
@@ -23,7 +27,7 @@
 		Le non-respect de ces règles entrainera des sanctions (mais vous êtes pas des enculés hein :) )
 	</p>
 	<button
-		on:click={() => {
+		onclick={() => {
 			popUpActive = false;
 		}}>Oui c'est promis pas de bétises</button
 	>

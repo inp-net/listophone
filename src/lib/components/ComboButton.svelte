@@ -4,30 +4,36 @@
     import { PUBLIC_LISTE1_UID, PUBLIC_LISTE2_UID } from "$env/static/public";
     import Button from "./Button.svelte";
 
-    export let liste: groupListe;
-    let theme: 'styleListe1' | 'styleListe2' | undefined = undefined;
-	export { theme as class };
-
-    let styleListe : string;
-    let selectedRoleListe : string = "Membre";
-    let selectedListe1 : Boolean;
-    let listPossibleMemberEmpty : Boolean;
-    $:if(liste !== undefined){
-        if(liste.uid == PUBLIC_LISTE1_UID){
-            styleListe = "styleListe1";
-            selectedListe1 = true;
-        }else if(liste.uid == PUBLIC_LISTE2_UID){
-            styleListe = "styleListe2";
-            selectedListe1 = false;
-        } 
+    interface Props {
+        liste: groupListe;
+        class?: 'styleListe1' | 'styleListe2' | undefined;
     }
+
+    let { liste, class: theme = undefined }: Props = $props();
+	
+
+    let styleListe : string = $state();
+    let selectedRoleListe : string = $state("Membre");
+    let selectedListe1 : Boolean = $state();
+    let listPossibleMemberEmpty : Boolean;
+    $effect(() => {
+        if(liste !== undefined){
+            if(liste.uid == PUBLIC_LISTE1_UID){
+                styleListe = "styleListe1";
+                selectedListe1 = true;
+            }else if(liste.uid == PUBLIC_LISTE2_UID){
+                styleListe = "styleListe2";
+                selectedListe1 = false;
+            } 
+        }
+    });
 
     let listUserIndexWithRolePrez : number[] = [];
     let listUserIndexWithRoleVP : number[] = [];
     let listUserIndexWithRoleTreasurer : number[] = [];
     let listUserIndexWithRoleSecretary : number[] = [];
     let listUserIndexAll : number[] = [];
-    let listIndexFiltered : number[] = [];
+    let listIndexFiltered : number[] = $state([]);
 
     //Filtrage des tableau de membres des listes selon leur role.
     if(liste !== undefined){
@@ -48,28 +54,30 @@
         }
     }
 
-    $:switch(selectedRoleListe){
-        case("Président"):{
-            listIndexFiltered = listUserIndexWithRolePrez;
-            break;
+    $effect(() => {
+        switch(selectedRoleListe){
+            case("Président"):{
+                listIndexFiltered = listUserIndexWithRolePrez;
+                break;
+            }
+            case("Vice-Prez"):{
+                listIndexFiltered = listUserIndexWithRoleVP;
+                break;
+            }
+            case("Trésorier"):{
+                listIndexFiltered = listUserIndexWithRoleTreasurer;
+                break;
+            }
+            case("Secrétaire"):{
+                listIndexFiltered = listUserIndexWithRoleSecretary;
+                break;
+            }
+            case("Membre"):{
+                listIndexFiltered = listUserIndexAll;
+                break;
+            }
         }
-        case("Vice-Prez"):{
-            listIndexFiltered = listUserIndexWithRoleVP;
-            break;
-        }
-        case("Trésorier"):{
-            listIndexFiltered = listUserIndexWithRoleTreasurer;
-            break;
-        }
-        case("Secrétaire"):{
-            listIndexFiltered = listUserIndexWithRoleSecretary;
-            break;
-        }
-        case("Membre"):{
-            listIndexFiltered = listUserIndexAll;
-            break;
-        }
-    }
+    });
 
 
 </script>

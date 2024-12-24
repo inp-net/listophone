@@ -1,7 +1,11 @@
 <script lang="ts">
-	export let content: string = '';
-	let theme: 'filiere' | 'styleListe1' | 'styleListe2';
-	export { theme as class };
+	interface Props {
+		content?: string;
+		class: 'filiere' | 'styleListe1' | 'styleListe2';
+	}
+
+	let { content = '', class: theme }: Props = $props();
+	
 </script>
 
 {#if content !== ''}

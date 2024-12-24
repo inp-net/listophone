@@ -6,15 +6,21 @@
 	import { selectedListe, userPhoneNumber } from '../../routes/stores';
 	import { PUBLIC_LISTE1_UID, PUBLIC_LISTE2_UID } from '$env/static/public';
 
-	export let selectedUser: user;
+    interface Props {
+        selectedUser: user;
+    }
 
-	let listeName: string;
+    let { selectedUser }: Props = $props();
 
-	$: if ($selectedListe === 1) {
-		listeName = PUBLIC_LISTE1_UID;
-	} else if ($selectedListe === 2) {
-		listeName = PUBLIC_LISTE2_UID;
-	}
+	let listeName: string = $state();
+
+	$effect(() => {
+        if ($selectedListe === 1) {
+    		listeName = PUBLIC_LISTE1_UID;
+    	} else if ($selectedListe === 2) {
+    		listeName = PUBLIC_LISTE2_UID;
+    	}
+    });
 </script>
 
 <div class="card">
@@ -26,7 +32,7 @@
         {/if}
         <div class="identity">
             <div class="name">
-                <p id="stringName">{selectedUser.member.firstName} {selectedUser.member.lastName}<p>
+                <p id="stringName">{selectedUser.member.firstName} {selectedUser.member.lastName}</p>
                 <Pills class='filiere' content={selectedUser.member.major.shortName}/>
             </div>
             <div class="list">
