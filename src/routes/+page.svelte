@@ -72,9 +72,10 @@
 		redirect_uri: new URL('/oauth/callback', env.PUBLIC_ORIGIN).toString()
 	}).authorizationURL;
 
+	
 	onMount(async () => {
 		if (data.status === 401) {
-			window.location.href = churrosLoginURL;
+			//window.location.href = churrosLoginURL;
 		}
 	});
 
@@ -130,6 +131,8 @@
 	let test: any; //extremement sus, doit être changé ou a envoyer a movaicode. au choix quoi.
 	//pour ceux qui lirons peut être ce code à l'avenir je suis désolé mdrrrrrrrr
 	$: test = selectedUser;
+	//$:console.log(liste1.members.length);
+	//$:console.log(liste2.members.length);
 
 </script>
 

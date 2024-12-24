@@ -3,6 +3,7 @@
 	import type { groupListe } from '../../routes/+page.svelte';
 	import { selectedListe, userPhoneNumber, userUid } from '../../routes/stores';
 	import { index } from "../../routes/stores";
+	import type { ListSeparator } from 'sass';
 
 	let theme: 'styleListe1' | 'styleListe2' | undefined = undefined;
 	export { theme as class };
