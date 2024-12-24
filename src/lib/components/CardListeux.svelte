@@ -1,16 +1,16 @@
 <script lang="ts">
-	import Pills from "./Pills.svelte";
-    import Button from "./Button.svelte";
-    import user from '../../routes/+page.svelte'
-    import noProfilPicture from '../asset/no-profile-picture.webp'
-	import { selectedListe, userPhoneNumber } from '../../routes/stores';
+	import Pills from "$lib/componants/Pills.svelte";
+    import Button from "$lib/componants/Button.svelte";
+    import type { user } from "$lib/utils";
+    import noProfilPicture from '$lib/asset/no-profile-picture.webp'
+	import { selectedListe, userPhoneNumber } from '$routes/stores';
 	import { PUBLIC_LISTE1_UID, PUBLIC_LISTE2_UID } from '$env/static/public';
 
     interface Props {
         selectedUser: user;
     }
 
-    let { selectedUser }: Props = $props();
+    let { selectedUser } : Props = $props();
 
 	let listeName: string = $state();
 
@@ -32,7 +32,7 @@
         {/if}
         <div class="identity">
             <div class="name">
-                <p id="stringName">{selectedUser.member.firstName} {selectedUser.member.lastName}</p>
+                <p id="stringName">{selectedUser.member.firstName} {selectedUser.member.lastName}</ p>
                 <Pills class='filiere' content={selectedUser.member.major.shortName}/>
             </div>
             <div class="list">

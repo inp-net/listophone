@@ -11,48 +11,11 @@
 	import PopUpWarning from '$lib/components/PopUpWarning.svelte';
 	import ComboButton from '$lib/components/ComboButton.svelte';
 
-	enum GroupType {
-		Association = "Association",
-		Club = "Club",
-		Group = "Group",
-		Integration = "Integration",
-		StudentAssociationSection = "StudentASsociationSection",
-		List = "List"
-	};	
+	import { 
+		GroupType,
+		type user,
+	} from '$lib/utils';
 
-	interface groups {
-		president : boolean;
-		treasurer : boolean;
-		vicePresident : boolean;
-		secretary : boolean;
-		group: {
-			uid: string;
-			name: string;
-			type : GroupType;
-		};
-	}
-
-	interface user {
-		member: {
-			pictureFile: string;
-			firstName: string;
-			lastName: string;
-			uid: string;
-			major: {
-				shortName: string;
-			};
-			groups: groups[];
-			phone: string;
-		};
-	}
-
-	interface groupListe {
-		pictureFile: string;
-		name: string;
-		uid: string;
-		color: string;
-		members: user[];
-	}
 	interface Props {
 		data: PageData;
 	}

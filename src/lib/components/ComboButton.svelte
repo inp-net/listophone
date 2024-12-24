@@ -1,8 +1,7 @@
 <script lang="ts">
-    import type { groupListe } from "../../routes/+page.svelte";
-    import type { groups } from "../../routes/+page.svelte";
+    import type { groupListe, groups } from '$lib/utils';
     import { PUBLIC_LISTE1_UID, PUBLIC_LISTE2_UID } from "$env/static/public";
-    import Button from "./Button.svelte";
+    import Button from "$lib/components/Button.svelte";
 
     interface Props {
         liste: groupListe;
@@ -36,6 +35,7 @@
     let listIndexFiltered : number[] = $state([]);
 
     //Filtrage des tableau de membres des listes selon leur role.
+    //TODO: Mettre le prix dans le corps de la page, ça n'a rien a faire dans un composant.
     if(liste !== undefined){
         for(let i = 0; i < liste.members.length; i++){
             if(liste.members[i].member.groups.some((n : groups) => n.group.name === liste.name && n.president === true)){

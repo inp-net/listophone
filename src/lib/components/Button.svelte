@@ -1,10 +1,8 @@
 <script lang="ts">
 	import Icon from '@iconify/svelte';
-	import type { groupListe } from '../../routes/+page.svelte';
 	import { selectedListe, userPhoneNumber, userUid } from '../../routes/stores';
 	import { index } from "../../routes/stores";
-	import type { ListSeparator } from 'sass';
-
+	import type { groupListe } from '$lib/utils';
 	
 
 	interface Props {

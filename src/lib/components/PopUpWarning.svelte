@@ -8,7 +8,6 @@
 
 <div class="rules">
 	<h1>Bienvenue sur le listophone ! La platforme des allos de l'N7 !</h1>
-
 	<p>
 		Avant de vous laisser sélectionner un 1A pour vos allos quelques petits rappels sur les règles :
 	</p>
