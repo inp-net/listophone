@@ -166,3 +166,6 @@ package
 # .pnp.*
 
 # End of https://www.toptal.com/developers/gitignore/api/svelte,node,yarn
+
+# ignore build output
+build/

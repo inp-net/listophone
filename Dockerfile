@@ -1,16 +1,31 @@
-from node:20-bullseye
+# ==================== #
+#        BUILDER      #
+# ==================== #
+FROM node:23-alpine AS builder
 
 WORKDIR /app
 
-copy package.json .
-copy yarn.lock .
-copy .yarnrc.yml .
-run yarn install 
+COPY . .
 
-env PUBLIC_LISTE1_UID pan7on
-env PUBLIC_LISTE2_UID ber7ker
+RUN yarn install
+RUN yarn run build
 
-copy . .
-run yarn build
 
-ENTRYPOINT [ "node", "./build/index.js" ]
+# ==================== #
+#      LISTOPHONE      #
+# ==================== #
+FROM node:23-alpine AS listophone
+
+WORKDIR /app
+
+COPY yarn.lock /app/
+COPY .yarnrc.yml /app/
+COPY .yarn/ /app/.yarn/
+COPY package.json /app/
+
+COPY --from=builder /app/build /app
+
+RUN yarn workspaces focus --all --production
+
+EXPOSE 3000
+CMD ["node", "./index.js"]

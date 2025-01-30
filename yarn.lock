@@ -325,13 +325,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@inp-net/churros-client@npm:^0.1.2":
-  version: 0.1.2
-  resolution: "@inp-net/churros-client@npm:0.1.2"
-  checksum: 10c0/4a3d3f20270af401f988fde461e62ab6c0c8ce240ffd1a91d32c23ff8c74f690cc467b1e6c3253a0e909b7aa1f565a33f2046d1f48918338620dea4648a73f90
-  languageName: node
-  linkType: hard
-
 "@isaacs/cliui@npm:^8.0.2":
   version: 8.0.2
   resolution: "@isaacs/cliui@npm:8.0.2"
@@ -2442,7 +2435,6 @@ __metadata:
   resolution: "listophone@workspace:."
   dependencies:
     "@iconify/svelte": "npm:^4.2.0"
-    "@inp-net/churros-client": "npm:^0.1.2"
     "@sveltejs/adapter-auto": "npm:^4.0.0"
     "@sveltejs/adapter-node": "npm:^5.2.12"
     "@sveltejs/kit": "npm:^2.16.1"
