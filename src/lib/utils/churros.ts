@@ -1,4 +1,4 @@
-import {CHURROS_BOT_TOKEN} from "$env/static/private";
+import {env} from "$env/dynamic/private";
 
 export async function query(query: string, variables: any): Promise<any> {
 	const response = await fetch('https://churros.inpt.fr/graphql', {
@@ -9,7 +9,7 @@ export async function query(query: string, variables: any): Promise<any> {
 		}),
 		headers: {
 			'Content-Type': 'application/json',
-			'Authorization': `Bearer ${CHURROS_BOT_TOKEN}`
+			'Authorization': `Bearer ${env.CHURROS_BOT_TOKEN}`
 		}
 	});
 	const body = await response.json();
