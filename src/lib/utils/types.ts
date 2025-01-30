@@ -8,7 +8,15 @@ export enum GroupType {
     Integration = "Integration",
     StudentAssociationSection = "StudentASsociationSection",
     List = "List"
-};	
+};
+
+export enum GroupRole {
+    president = "president",
+    vicePresident        = "vicePresident",
+    treasurer = "treasurer",
+    secretary = "secretary",
+    members   = "members"
+}
 
 export interface Group {
     president : boolean;

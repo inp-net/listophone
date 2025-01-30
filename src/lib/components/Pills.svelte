@@ -5,7 +5,6 @@
 	}
 
 	let { content = '', class: theme }: Props = $props();
-	
 </script>
 
 {#if content !== ''}
@@ -15,16 +14,16 @@
 {/if}
 
 <style lang="scss">
-    .pill{
-        display: inline-flex;
-        align-items: center;
-        font-size: 1rem;
-        padding: 0.4rem;
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-        border-radius: 0.3rem;
-        margin: 0.25rem;
-        color: black;
+	.pill {
+		display: inline-flex;
+		align-items: center;
+		font-size: 1rem;
+		padding: 0.4rem;
+		padding-left: 0.5rem;
+		padding-right: 0.5rem;
+		border-radius: 0.3rem;
+		margin: 0.25rem;
+		color: black;
 
 		&.filiere {
 			background: var(--bg);

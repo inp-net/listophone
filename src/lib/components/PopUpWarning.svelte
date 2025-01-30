@@ -40,7 +40,7 @@
 		align-items: center;
 		height: auto;
 
-        max-width: 40rem;
+		max-width: 40rem;
 		border-radius: 20px;
 		margin: 1rem;
 		padding: 1rem;
@@ -66,9 +66,10 @@
 		border-radius: 20px;
 		border: 0;
 
-        background: white;
-        font-size: 1.3em;
-        font-weight: 600;
+		background: white;
+		font-size: 1.3em;
+		font-weight: 600;
 
-    }
+		cursor: pointer;
+	}
 </style>

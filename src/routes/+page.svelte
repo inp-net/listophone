@@ -1,103 +1,20 @@
 <script lang="ts">
-	import { PUBLIC_LISTE1_UID, PUBLIC_LISTE2_UID } from '$env/static/public';
-	import { env } from '$env/dynamic/public';
-	import Button from '$lib/components/Button.svelte';
-	import CardListeux from '$lib/components/CardListeux.svelte';
-	import { ChurrosClient } from '@inp-net/churros-client';
-	import type { PageData } from './$types';
-	import { onMount } from 'svelte';
-	import { selectedListe, userUid, userPhoneNumber, index } from './stores';
-	import logo from '$lib/asset/listophoneLogo.png';
+	import type { PageProps } from './$types';
+	import logo from '$lib/asset/logo.png';
 	import PopUpWarning from '$lib/components/PopUpWarning.svelte';
+	import MemberCard from '$lib/components/MemberCard.svelte';
+	import { selectedListeId, selectedMemberId } from '$lib/stores';
 	import ComboButton from '$lib/components/ComboButton.svelte';
+	import Button from '$lib/components/Button.svelte';
+	import { randomMember } from '$lib/utils/utils';
 
-	import { 
-		GroupType,
-		type user,
-	} from '$lib/utils';
+	let { data }: PageProps = $props();
+	let { listes } = $derived(data);
 
-	interface Props {
-		data: PageData;
-	}
-
-	let { data }: Props = $props();
-
-	let { liste1, liste2 } = $derived(data.data);
-
-	//definition de type redondante ça doit dégager.
-	
-
-	//lien entre le listophone et Churros par l'oauth (page initiale pour lier le compte churros au site)
-	const churrosLoginURL = new ChurrosClient({
-		client_id: env.PUBLIC_CHURROS_CLIENT_ID,
-		client_secret: '',
-		redirect_uri: new URL('/oauth/callback', env.PUBLIC_ORIGIN).toString()
-	}).authorizationURL;
-
-	
-	onMount(async () => {
-		if (data.status === 401) {
-			//window.location.href = churrosLoginURL;
-		}
-	});
+	selectedListeId.set(data.selectedListeId);
+	selectedMemberId.set(data.selectedMemberId);
 
 	let popUpActive: boolean = $state(true);
-
-	//initalisation avec toutes les données vides pour pas vexer typeScript
-	let selectedUser: user = $state({
-		member: {
-			pictureFile: '',
-			firstName: 'John',
-			lastName: 'Doe',
-			uid: 'doej',
-			major: {
-				shortName: 'SN'
-			},
-			groups: [
-				{
-					president: false,
-					treasurer: false,
-					vicePresident: false,
-					secretary: false,
-					group: {
-						uid: '1',
-						name: 'TVCAnet7',
-						type: GroupType.Association
-					}
-				},
-				{
-					president: false,
-					treasurer: false,
-					vicePresident: false,
-					secretary: false,
-					group: {
-						uid: '2',
-						name: '7Fault',
-						type: GroupType.Group
-					}
-				}
-			],
-			phone: '?'
-		}
-	});
-	
-$effect(() => {
-		if ($selectedListe === 1) {
-			selectedUser = liste1.members[$index];
-			userUid.set(selectedUser.member.uid);
-			userPhoneNumber.set(selectedUser.member.phone);
-		} else if ($selectedListe === 2) {
-			selectedUser = liste2.members[$index];
-			userUid.set(selectedUser.member.uid);
-			userPhoneNumber.set(selectedUser.member.phone);
-		}
-	});
-	let test: any = $derived(selectedUser); //extremement sus, doit être changé ou a envoyer a movaicode. au choix quoi.
-	//pour ceux qui lirons peut être ce code à l'avenir je suis désolé mdrrrrrrrr
-	
-	//$:console.log(liste1.members.length);
-	//$:console.log(liste2.members.length);
-
 </script>
 
 <section>
@@ -120,12 +37,15 @@ $effect(() => {
 			<PopUpWarning bind:popUpActive />
 		</div>
 	{/if}
-	<CardListeux selectedUser={test}></CardListeux>
+
+	<MemberCard {listes}></MemberCard>
+
 	<div id="buttonUniqueListe">
-		<ComboButton liste={liste1} class="styleListe1"></ComboButton>
-		<ComboButton liste={liste2} class="styleListe2"></ComboButton>
+		<ComboButton {listes} listeId={0} />
+		<ComboButton {listes} listeId={1} />
 	</div>
-	<Button type="randomizer" {liste1} {liste2}>Listeux quelconque</Button>
+	<Button onclick={() => randomMember(listes)}>Listeux quelconque</Button>
+
 	<footer>
 		Developed by <a href="https://churros.inpt.fr/groups/net7-n7/">net7</a>
 	</footer>
@@ -214,16 +134,13 @@ $effect(() => {
 		font-weight: bold;
 	}
 
-	
-
 	footer {
 		position: flex;
 
 		padding: 0.8rem;
 		margin-top: auto;
-		margin-bottom: 1rem;
+		margin-bottom: 0.5rem;
 		border-radius: 20px;
-		background: rgb(255, 255, 255);
 
 		font-size: 0.8rem;
 		color: rgba(0, 0, 0, 0.8);

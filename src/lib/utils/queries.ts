@@ -18,7 +18,7 @@ fragment ListeMembers on User {
 	pictureFile
 	firstName, lastName
 	uid
-	major { shortName }
+	major { name }
 	groups { 
 		president,
 		treasurer,
