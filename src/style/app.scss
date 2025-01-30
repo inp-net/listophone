@@ -1,5 +1,5 @@
-@import './default-theme.scss';
-@import './variables.scss';
+@use 'default-theme.scss';
+@use 'variables.scss';
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 :root {
