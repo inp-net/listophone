@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Pills from "$lib/componants/Pills.svelte";
-    import Button from "$lib/componants/Button.svelte";
+	import Pills from "$lib/components/Pills.svelte";
+    import Button from "$lib/components/Button.svelte";
     import type { user } from "$lib/utils";
     import noProfilPicture from '$lib/asset/no-profile-picture.webp'
 	import { selectedListe, userPhoneNumber } from '$routes/stores';
