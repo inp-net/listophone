@@ -28,7 +28,6 @@
 		<div class="identity">
 			<div class="name">
 				<p id="stringName">{member.firstName} {member.lastName}</p>
-				{console.log(member)}
 				<Pills class="filiere" content={member.major.name} />
 			</div>
 			<div class="list">
