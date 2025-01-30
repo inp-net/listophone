@@ -1,4 +1,6 @@
-//Enum pour les différents types de groupes
+/**
+ * An enum for the different types of groups
+ */
 export enum GroupType {
     Association = "Association",
     Club = "Club",
@@ -8,8 +10,7 @@ export enum GroupType {
     List = "List"
 };	
 
-// Interface pour 
-export interface groups {
+export interface Group {
     president : boolean;
     treasurer : boolean;
     vicePresident : boolean;
@@ -21,24 +22,25 @@ export interface groups {
     };
 }
 
-export interface user {
-    member: {
-        pictureFile: string;
-        firstName: string;
-        lastName: string;
-        uid: string;
-        major: {
-            shortName: string;
-        };
-        groups: groups[];
-        phone: string;
+export interface User {
+    pictureFile: string;
+    firstName: string;
+    lastName: string;
+    uid: string;
+    major: {
+        name: string;
     };
+    groups: Group[];
+    phone: string;
 }
 
-export interface groupListe {
+export interface ListeInfo {
     pictureFile: string;
     name: string;
     uid: string;
     color: string;
-    members: user[];
+}
+
+export interface Liste extends ListeInfo {
+    members: User[];
 }
