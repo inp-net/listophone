@@ -1,9 +1,8 @@
 <script lang="ts">
-	import { type Liste, GroupRole, type User, type Group } from '$lib/utils/types';
+	import { type Liste, GroupRole } from '$lib/utils/types';
 	import Button from '$lib/components/Button.svelte';
 	import { randomMember } from '$lib/utils/utils';
-	import { writable } from 'svelte/store';
-	import { createSubscriber } from 'svelte/reactivity';
+	import Icon from '@iconify/svelte';
 
 	interface Props {
 		listes: Liste[];
@@ -53,8 +52,9 @@
 	}
 </script>
 
-<div class="combo-button">
+<div class="combo-button liste{listeId}">
 	<label>
+		<Icon icon="fa-solid:caret-down" />
 		<select name="choixRole" bind:value={selectedRoleListe}>
 			{#each Object.entries(GroupRoleToText) as [role, text]}
 				{#if role !== 'members'}
@@ -67,7 +67,7 @@
 		</select>
 	</label>
 	<div class="elem-button">
-		<Button onclick={() => randomMember(listes, listeId, listIndexFiltered)}>
+		<Button onclick={() => randomMember(listes, listeId, listIndexFiltered)} class="liste{listeId}">
 			{GroupRoleToText[selectedRoleListe]}
 			{liste.name}
 		</Button>
@@ -81,18 +81,26 @@
 		justify-content: center;
 		font-size: 1em;
 		border-radius: 0.3rem;
-		background: var(--liste1-bg-color);
 
-		&.styleListe1 {
+		&.liste0 {
+			background: var(--liste0-bg-color);
+			color: var(--liste0-text-color);
+		}
+
+		&.liste1 {
 			background: var(--liste1-bg-color);
 			color: var(--liste1-text-color);
 		}
-
-		&.styleListe2 {
-			background: var(--liste2-bg-color);
-			color: var(--liste2-text-color);
-		}
 		border: 0;
+
+		position: relative;
+
+		:global(svg) {
+			position: absolute;
+			top: 50%;
+			left: 10%;
+			transform: translate(-50%, -50%);
+		}
 
 		select {
 			height: 3.5rem;
@@ -102,11 +110,6 @@
 
 			border: none;
 			background-color: transparent;
-			background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24'%3E%3Cpath fill='%23000' d='M7.41 8.58L12 13.17l4.59-4.59L18 10l-6 6l-6-6z'/%3E%3C/svg%3E");
-			background-position: center;
-			background-repeat: no-repeat;
-			background-size: contain;
-			color: black;
 			appearance: none;
 
 			cursor: pointer;

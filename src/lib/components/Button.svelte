@@ -35,24 +35,20 @@
 		padding: 0.3rem;
 
 		cursor: pointer;
-		&.comboButton {
-			border-top-left-radius: 0;
-			border-bottom-left-radius: 0;
+
+		&.liste0 {
+			color: var(--liste0-text-color);
+			background: var(--liste0-bg-color);
+			&:hover {
+				background: var(--liste0-bg-color-hover);
+			}
 		}
 
-		&.styleListe1 {
+		&.liste1 {
 			color: var(--liste1-text-color);
 			background: var(--liste1-bg-color);
 			&:hover {
 				background: var(--liste1-bg-color-hover);
-			}
-		}
-
-		&.styleListe2 {
-			color: var(--liste2-text-color);
-			background: var(--liste2-bg-color);
-			&:hover {
-				background: var(--liste2-bg-color-hover);
 			}
 		}
 

@@ -6,7 +6,7 @@
 	import { selectedListeId, selectedMemberId } from '$lib/stores';
 	import ComboButton from '$lib/components/ComboButton.svelte';
 	import Button from '$lib/components/Button.svelte';
-	import { randomMember } from '$lib/utils/utils';
+	import { randomMember, textColorBasedOnBackground } from '$lib/utils/utils';
 
 	let { data }: PageProps = $props();
 	let { listes } = $derived(data);
@@ -17,7 +17,17 @@
 	let popUpActive: boolean = $state(true);
 </script>
 
-<section>
+<section
+	style={`
+		--liste0-bg-color: ${listes[0].color};
+		--liste1-bg-color: ${listes[1].color};
+
+		--liste0-text-color: ${textColorBasedOnBackground(listes[0].color)}; 
+		--liste1-text-color: ${textColorBasedOnBackground(listes[1].color)}; 
+
+		--liste0-bg-color-hover: rgb()
+	`}
+>
 	<header>
 		<img src={logo} alt="logo-site" />
 		<div class="rules">

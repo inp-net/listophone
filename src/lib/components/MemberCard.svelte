@@ -18,7 +18,7 @@
 </script>
 
 <div class="card">
-	<div class="headerInfo {$selectedListeId === 1 ? 'styleListe1' : 'styleListe2'}">
+	<div class="headerInfo liste{$selectedListeId}">
 		{#if member.pictureFile}
 			<img src="https://churros.inpt.fr/storage/{member.pictureFile}" alt="profile-pic" />
 		{:else}
@@ -39,10 +39,7 @@
 	</div>
 	<div class="clubs">
 		{#each member.groups as club}
-			<Pills
-				class={$selectedListeId === 1 ? 'styleListe1' : 'styleListe2'}
-				content={club.group.name}
-			/>
+			<Pills class="liste{$selectedListeId}" content={club.group.name} />
 		{/each}
 	</div>
 	<div class="actions">
@@ -50,7 +47,7 @@
 			onclick={() => {
 				window.open(`https://churros.inpt.fr/${member.uid}`);
 			}}
-			class={$selectedListeId === 1 ? 'styleListe1' : 'styleListe2'}
+			class="liste{$selectedListeId}"
 		>
 			Profil Churros
 		</Button>
@@ -58,7 +55,7 @@
 			onclick={() => {
 				window.location.href = `tel:${member.phone}`;
 			}}
-			class={$selectedListeId === 1 ? 'styleListe1' : 'styleListe2'}
+			class="liste{$selectedListeId}"
 		>
 			<Icon icon="mdi:phone" />
 			Appeler
@@ -108,14 +105,14 @@
 		align-items: center;
 		height: auto;
 
-		&.styleListe1 {
-			background: var(--liste1-bg-color);
-			color: var(--liste1-text-color);
+		&.liste0 {
+			background: var(--liste0-bg-color);
+			color: var(--liste0-text-color);
 		}
 
-		&.styleListe2 {
-			background: var(--liste2-bg-color);
-			color: var(--liste2-text-color);
+		&.liste1 {
+			background: var(--liste1-bg-color);
+			color: var(--liste1-text-color);
 		}
 	}
 

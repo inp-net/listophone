@@ -1,7 +1,7 @@
 <script lang="ts">
 	interface Props {
 		content?: string;
-		class: 'filiere' | 'styleListe1' | 'styleListe2';
+		class: string;
 	}
 
 	let { content = '', class: theme }: Props = $props();
@@ -29,14 +29,14 @@
 			background: var(--bg);
 		}
 
-		&.styleListe1 {
-			background: var(--liste1-bg-color);
-			color: var(--liste1-text-color);
+		&.liste0 {
+			background: var(--liste0-bg-color);
+			color: var(--liste0-text-color);
 		}
 
-		&.styleListe2 {
-			background: var(--liste2-bg-color);
-			color: var(--liste2-text-color);
+		&.liste1 {
+			background: var(--liste1-bg-color);
+			color: var(--liste1-text-color);
 		}
 	}
 </style>
