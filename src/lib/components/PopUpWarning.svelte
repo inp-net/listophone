@@ -1,32 +1,35 @@
 <script lang="ts">
-	export let popUpActive: boolean;
+	interface Props {
+		popUpActive: boolean;
+	}
+
+	let { popUpActive = $bindable() }: Props = $props();
 </script>
 
 <div class="rules">
-	<h1>Bienvenue sur le listophone ! La platforme des allos de l'N7 !</h1>
-
-	<p>
-		Avant de vous laisser sélectionner un 1A pour vos allos quelques petits rappels sur les règles :
-	</p>
+	<h1>Bienvenue sur le Listophone ! La plateforme des appels de l'N7 !</h1>
+	<p>Avant de vous laisser sélectionner un 1A pour vos appels, quelques rappels sur les règles :</p>
 	<ul>
 		<li>
-			Chaque allo doit être fait par groupe de <strong>DEUX LISTEUX MINIMUM</strong> peut importe la
-			demande. Vous devez appeler un seul 1A, les listes s'occuperont d'envoyer une deuxième personne
+			Chaque appel doit être effectué par un groupe de <strong>deux listeux minimum</strong>, peu
+			importe la demande. Vous devez appeler un seul 1A, les listes s'occuperont d'envoyer une
+			deuxième personne.
 		</li>
 		<li>
-			<strong>Liberté</strong> : Vous ne devez pas forcer quelqu'un à faire quelque chose qu'il ne veut
-			pas
+			<strong>Liberté</strong> : Vous ne devez pas forcer quelqu'un à faire quelque chose qu'il ne souhaite
+			pas.
 		</li>
-		<li><strong>Informer</strong> : Les listeux doivent être au courant de tout avant de venir</li>
+		<li><strong>Informer</strong> : Les listeux doivent être au courant de tout avant de venir.</li>
 	</ul>
-	<p>
-		Le non-respect de ces règles entrainera des sanctions (mais vous êtes pas des enculés hein :) )
-	</p>
+	<p>Le non-respect de ces règles entraînera des sanctions.</p>
+
 	<button
-		on:click={() => {
+		onclick={() => {
 			popUpActive = false;
-		}}>Oui c'est promis pas de bétises</button
+		}}
 	>
+		Compris!
+	</button>
 </div>
 
 <style>
@@ -37,7 +40,7 @@
 		align-items: center;
 		height: auto;
 
-        max-width: 40rem;
+		max-width: 40rem;
 		border-radius: 20px;
 		margin: 1rem;
 		padding: 1rem;
@@ -63,9 +66,18 @@
 		border-radius: 20px;
 		border: 0;
 
-        background: white;
-        font-size: 1.3em;
-        font-weight: 600;
+		background: white;
+		font-size: 1.3em;
+		font-weight: 600;
 
-    }
+		cursor: pointer;
+	}
+
+	ul {
+		list-style-type: none;
+	}
+
+	li {
+		margin-bottom: 1rem;
+	}
 </style>

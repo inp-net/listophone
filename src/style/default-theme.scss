@@ -9,18 +9,10 @@
 	--textLink: #{$blue-600};
 	--error: #{$red-800};
 	--cardBg: #{$gray-200};
-	//couleur des listes à changer -> Amélioration possible recup la couleur de la liste si elle est indiqué par le club dans churros (c'est pas fait prsk actuellement c'est "pas possible"
 	--neutral-bg-color: #{$blue-700};
 	--neutral-text-color: #{$white};
 	--neutral-bg-color-hover: #{$blue-800};
 
-	//couleur de la liste 1
-	--liste1-bg-color: #{$liste1};
-	--liste1-text-color: #{$black};
-	--liste1-bg-color-hover:#{$liste1-darker};
-
-	//couleur de la liste 2
-	--liste2-bg-color: #{$liste2};
-	--liste2-text-color: #{$white};
-	--liste2-bg-color-hover:#{$liste2-darker};
+	--liste0-bg-color-hover: rgb(from var(--liste0-bg-color) r g b / .5);
+	--liste1-bg-color-hover: rgb(from var(--liste1-bg-color) r g b / .5);
 }

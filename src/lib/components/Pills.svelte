@@ -1,7 +1,10 @@
 <script lang="ts">
-	export let content: string = '';
-	let theme: 'filiere' | 'styleListe1' | 'styleListe2';
-	export { theme as class };
+	interface Props {
+		content?: string;
+		class: string;
+	}
+
+	let { content = '', class: theme }: Props = $props();
 </script>
 
 {#if content !== ''}
@@ -11,29 +14,29 @@
 {/if}
 
 <style lang="scss">
-    .pill{
-        display: inline-flex;
-        align-items: center;
-        font-size: 1rem;
-        padding: 0.4rem;
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-        border-radius: 0.3rem;
-        margin: 0.25rem;
-        color: black;
+	.pill {
+		display: inline-flex;
+		align-items: center;
+		font-size: 1rem;
+		padding: 0.4rem;
+		padding-left: 0.5rem;
+		padding-right: 0.5rem;
+		border-radius: 0.3rem;
+		margin: 0.25rem;
+		color: black;
 
 		&.filiere {
 			background: var(--bg);
 		}
 
-		&.styleListe1 {
-			background: var(--liste1-bg-color);
-			color: var(--liste1-text-color);
+		&.liste0 {
+			background: var(--liste0-bg-color);
+			color: var(--liste0-text-color);
 		}
 
-		&.styleListe2 {
-			background: var(--liste2-bg-color);
-			color: var(--liste2-text-color);
+		&.liste1 {
+			background: var(--liste1-bg-color);
+			color: var(--liste1-text-color);
 		}
 	}
 </style>
