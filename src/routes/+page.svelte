@@ -34,9 +34,9 @@
 			<div class="rules-description">
 				<h1>Rappel des règles :</h1>
 				<ul>
-					<li><strong>2 personnes </strong>par allos</li>
-					<li><strong>Liberté</strong> : On force personne dans les allos</li>
-					<li><strong>Informer</strong> : Les listeux doivent tout savoir</li>
+					<li><strong>Deux personnes</strong> par allos</li>
+					<li><strong>Liberté</strong> : Personne n'est forcé de participer</li>
+					<li><strong>Information</strong> : Les membres doivent être informés de tout</li>
 				</ul>
 			</div>
 			<button onclick={() => (popUpActive = true)}>Règles complètes</button>
@@ -159,5 +159,13 @@
 			color: var(--textLink);
 			text-decoration: none;
 		}
+	}
+
+	ul {
+		list-style-type: none;
+	}
+
+	li {
+		margin-bottom: 1rem;
 	}
 </style>
