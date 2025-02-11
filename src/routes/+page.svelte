@@ -6,7 +6,7 @@
 	import { selectedListeId, selectedMemberId } from '$lib/stores';
 	import ComboButton from '$lib/components/ComboButton.svelte';
 	import Button from '$lib/components/Button.svelte';
-	import { randomMember, textColorBasedOnBackground } from '$lib/utils/utils';
+	import { randomMember, textColorBasedOnBackground, hoverBackgroundColor } from '$lib/utils/utils';
 
 	let { data }: PageProps = $props();
 	let { listes } = $derived(data);
@@ -24,6 +24,9 @@
 
 		--liste0-text-color: ${textColorBasedOnBackground(listes[0].color)}; 
 		--liste1-text-color: ${textColorBasedOnBackground(listes[1].color)}; 
+
+		--liste0-bg-color-hover: ${hoverBackgroundColor(listes[0].color)}; 
+		--liste1-bg-color-hover: ${hoverBackgroundColor(listes[1].color)}; 
 
 		--liste0-bg-color-hover: rgb()
 	`}
