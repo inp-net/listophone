@@ -42,5 +42,5 @@ check:
   script:
     - yarn install
     - yarn add -D svelte-check
-    - yarn sv check
+    - yarn svelte-check
     - yarn build
