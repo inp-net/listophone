@@ -33,3 +33,14 @@ build:
           --local dockerfile=. \
           --output type=image,name=$CI_REGISTRY_IMAGE:$CI_COMMIT_TAG,push=true
     - echo "Successfully built and pushed $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG"
+
+check:
+  stage: build
+  image: stagex/yarn
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  script:
+    - yarn install
+    - yarn add -D svelte-check
+    - yarn sv check
+    - yarn build
