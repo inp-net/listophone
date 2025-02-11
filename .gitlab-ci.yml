@@ -42,6 +42,7 @@ check:
   script:
     - yarn install
     - yarn add -D svelte-check
+    - yarn cp .env.example .env
     - yarn svelte-kit sync
     - yarn svelte-check
     - yarn build
