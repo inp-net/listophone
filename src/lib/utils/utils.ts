@@ -32,12 +32,3 @@ export function textColorBasedOnBackground(backgroundColor: string): string {
 	const L = 0.2126 * x[0] + 0.7152 * x[1] + 0.0722 * x[2];
 	return L > 0.179 ? "#000" : "#fff";
 }
-
-export function hoverBackgroundColor(backgroundColor: string): string {
-	backgroundColor = backgroundColor.substring(1);
-	const r = parseInt(backgroundColor.substring(0, 2), 16);
-	const g = parseInt(backgroundColor.substring(2, 4), 16);
-	const b = parseInt(backgroundColor.substring(4, 6), 16);
-
-	return `rgba(${r} ${g} ${b} / 0.75)`
-}
