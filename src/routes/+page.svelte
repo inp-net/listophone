@@ -25,6 +25,9 @@
 		--liste0-text-color: ${textColorBasedOnBackground(listes[0].color)}; 
 		--liste1-text-color: ${textColorBasedOnBackground(listes[1].color)}; 
 
+		--liste0-bg-color-hover: rgb(from var(--liste0-bg-color) r g b / .5);
+		--liste1-bg-color-hover: rgb(from var(--liste1-bg-color) r g b / .5);
+
 		--liste0-bg-color-hover: rgb()
 	`}
 >

@@ -33,3 +33,16 @@ build:
           --local dockerfile=. \
           --output type=image,name=$CI_REGISTRY_IMAGE:$CI_COMMIT_TAG,push=true
     - echo "Successfully built and pushed $CI_REGISTRY_IMAGE:$CI_COMMIT_TAG"
+
+check:
+  stage: build
+  image: node:23-alpine
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+  script:
+    - yarn install
+    - yarn add -D svelte-check
+    - cp .env.example .env
+    - yarn svelte-kit sync
+    - yarn svelte-check
+    - yarn build
