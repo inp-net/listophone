@@ -2,53 +2,53 @@
  * An enum for the different types of groups
  */
 export enum GroupType {
-    Association = "Association",
-    Club = "Club",
-    Group = "Group",
-    Integration = "Integration",
-    StudentAssociationSection = "StudentASsociationSection",
-    List = "List"
-};
+	Association = 'Association',
+	Club = 'Club',
+	Group = 'Group',
+	Integration = 'Integration',
+	StudentAssociationSection = 'StudentASsociationSection',
+	List = 'List'
+}
 
 export enum GroupRole {
-    president = "president",
-    vicePresident        = "vicePresident",
-    treasurer = "treasurer",
-    secretary = "secretary",
-    members   = "members"
+	president = 'president',
+	vicePresident = 'vicePresident',
+	treasurer = 'treasurer',
+	secretary = 'secretary',
+	members = 'members'
 }
 
 export interface Group {
-    president : boolean;
-    treasurer : boolean;
-    vicePresident : boolean;
-    secretary : boolean;
-    group: {
-        uid: string;
-        name: string;
-        type : GroupType;
-    };
+	president: boolean;
+	treasurer: boolean;
+	vicePresident: boolean;
+	secretary: boolean;
+	group: {
+		uid: string;
+		name: string;
+		type: GroupType;
+	};
 }
 
 export interface User {
-    pictureFile: string;
-    firstName: string;
-    lastName: string;
-    uid: string;
-    major: {
-        name: string;
-    };
-    groups: Group[];
-    phone: string;
+	pictureFile: string;
+	firstName: string;
+	lastName: string;
+	uid: string;
+	major: {
+		name: string;
+	};
+	groups: Group[];
+	phone: string;
 }
 
 export interface ListeInfo {
-    pictureFile: string;
-    name: string;
-    uid: string;
-    color: string;
+	pictureFile: string;
+	name: string;
+	uid: string;
+	color: string;
 }
 
 export interface Liste extends ListeInfo {
-    members: User[];
+	members: User[];
 }

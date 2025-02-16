@@ -1,7 +1,7 @@
 .buildkit:
   image:
     name: moby/buildkit:rootless
-    entrypoint: ["sh", "-c"]
+    entrypoint: ['sh', '-c']
   variables:
     BUILDKITD_FLAGS: --oci-worker-no-process-sandbox
   before_script:
@@ -15,7 +15,6 @@
         }
       }
       EOF
-
 
 stages:
   - build

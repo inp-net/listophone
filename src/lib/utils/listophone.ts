@@ -1,9 +1,9 @@
-import { query } from "./churros";
-import { ListeMembersQuery, ListeQuery } from "./queries";
-import type { Liste as T_Liste, ListeInfo, User } from "./types";
+import { query } from './churros';
+import { ListeMembersQuery, ListeQuery } from './queries';
+import type { Liste as T_Liste, ListeInfo, User } from './types';
 
 class Liste {
-	private uid: string
+	private uid: string;
 
 	private details: ListeInfo | undefined;
 	private details_ttl: Date = new Date();
@@ -23,7 +23,7 @@ class Liste {
 		}
 
 		if (!this.details) {
-			throw new Error("Failed to fetch details");
+			throw new Error('Failed to fetch details');
 		}
 
 		return this.details;
@@ -34,13 +34,11 @@ class Liste {
 
 	private static filterMembers(members: User[]): User[] {
 		return members
-			.filter((member) => member.phone !== "")
+			.filter((member) => member.phone !== '')
 			.map((member) => {
 				// cleanup groups
 				member.groups = member.groups.filter(
-					(group) => 
-						group.group.type !== "Integration" &&
-						group.group.type !== "Group"
+					(group) => group.group.type !== 'Integration' && group.group.type !== 'Group'
 				);
 
 				return member;
@@ -50,9 +48,9 @@ class Liste {
 	private async populateMembers(after?: string, reset: Boolean = true): Promise<void> {
 		if (reset) this.members = [];
 		const { data } = await query(ListeMembersQuery, { uid: this.uid, after: after });
-		this.members.push(...Liste.filterMembers(
-			data.group.members.edges.map(
-				(edge: { node: { user: User } }) => edge.node.user)
+		this.members.push(
+			...Liste.filterMembers(
+				data.group.members.edges.map((edge: { node: { user: User } }) => edge.node.user)
 			)
 		);
 
@@ -72,17 +70,15 @@ class Liste {
 
 		return this.members;
 	}
-	
 }
 
 export class Listophone {
 	static #instance: Listophone;
 
 	private Listes: { [uid: string]: Liste } = {};
-	
 
 	private constructor(ListeUid: [string, string]) {
-		ListeUid.forEach(uid => {
+		ListeUid.forEach((uid) => {
 			this.Listes[uid] = new Liste(uid);
 		});
 	}

@@ -11,7 +11,7 @@ query data($uid: String!) {
 		...Liste
 	}
 }
-`
+`;
 
 export const ListeMembersQuery = `
 fragment ListeMembers on User {
@@ -50,4 +50,4 @@ query data($uid: String!, $after: String) {
 		}
 	}
 }
-`
+`;
