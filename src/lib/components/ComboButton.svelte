@@ -3,6 +3,7 @@
 	import Button from '$lib/components/Button.svelte';
 	import { randomMember } from '$lib/utils/utils';
 	import Icon from '@iconify/svelte';
+	import { env } from '$env/dynamic/public';
 
 	interface Props {
 		listes: Liste[];
@@ -41,7 +42,7 @@
 				for (const role of Object.values(GroupRole)) {
 					if (role == GroupRole.members) continue;
 
-					if (group[role]) {
+					if (group[role] && (group.group.uid === env.PUBLIC_LISTE0_UID || group.group.uid === env.PUBLIC_LISTE1_UID)) {
 						tmpFilteredIndex[role].push(index);
 					}
 				}
