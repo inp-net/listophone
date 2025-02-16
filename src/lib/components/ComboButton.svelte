@@ -37,15 +37,18 @@
 		};
 
 		for (const [index, user] of liste.members.entries()) {
-			user.groups.some((group) => {
-				for (const role of Object.values(GroupRole)) {
-					if (role == GroupRole.members) continue;
+			// Find the group of the list in the user groups to check if the user has a role in the list
+			let group = user.groups.find((group) => group.group.uid === liste.uid);
 
-					if (group[role]) {
-						tmpFilteredIndex[role].push(index);
-					}
+			if (!group) continue; // Should not be possible, but here to make typescript happy
+
+			for (const role of Object.values(GroupRole)) {
+				if (role == GroupRole.members) continue;
+
+				if (group[role]) {
+					tmpFilteredIndex[role].push(index);
 				}
-			});
+			}
 		}
 
 		return tmpFilteredIndex;
