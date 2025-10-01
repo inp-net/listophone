@@ -5,16 +5,6 @@ __metadata:
   version: 8
   cacheKey: 10c0
 
-"@ampproject/remapping@npm:^2.3.0":
-  version: 2.3.0
-  resolution: "@ampproject/remapping@npm:2.3.0"
-  dependencies:
-    "@jridgewell/gen-mapping": "npm:^0.3.5"
-    "@jridgewell/trace-mapping": "npm:^0.3.24"
-  checksum: 10c0/81d63cca5443e0f0c72ae18b544cc28c7c0ec2cea46e7cb888bb0e0f411a1191d0d6b7af798d54e30777d8d1488b2ec0732aac2be342d3d7d3ffd271c6f489ed
-  languageName: node
-  linkType: hard
-
 "@esbuild/aix-ppc64@npm:0.25.0":
   version: 0.25.0
   resolution: "@esbuild/aix-ppc64@npm:0.25.0"
@@ -363,6 +353,16 @@ __metadata:
     "@jridgewell/sourcemap-codec": "npm:^1.4.10"
     "@jridgewell/trace-mapping": "npm:^0.3.24"
   checksum: 10c0/c668feaf86c501d7c804904a61c23c67447b2137b813b9ce03eca82cb9d65ac7006d766c218685d76e3d72828279b6ee26c347aa1119dab23fbaf36aed51585a
+  languageName: node
+  linkType: hard
+
+"@jridgewell/remapping@npm:^2.3.4":
+  version: 2.3.5
+  resolution: "@jridgewell/remapping@npm:2.3.5"
+  dependencies:
+    "@jridgewell/gen-mapping": "npm:^0.3.5"
+    "@jridgewell/trace-mapping": "npm:^0.3.24"
+  checksum: 10c0/3de494219ffeb2c5c38711d0d7bb128097edf91893090a2dbc8ee0b55d092bb7347b1fd0f478486c5eab010e855c73927b1666f2107516d472d24a73017d1194
   languageName: node
   linkType: hard
 
@@ -1928,12 +1928,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"esrap@npm:^1.4.6":
-  version: 1.4.6
-  resolution: "esrap@npm:1.4.6"
+"esrap@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "esrap@npm:2.1.0"
   dependencies:
     "@jridgewell/sourcemap-codec": "npm:^1.4.15"
-  checksum: 10c0/3fb4fcc301c0d8d97e5b2fed0154b3da57b33325f783b8ed893c3082b835d83cb25b079156d659769862e803b8c22f59094e3ccf97972bb52cfba51528fec27d
+  checksum: 10c0/42f9f8b49972989a58082dda58c3862689c9c45f3245fd9bfa7e84a00de9cdc422d73621fad1c5d4872c12875869bd770cda80be20ffb1244e6c27b192a3f7b0
   languageName: node
   linkType: hard
 
@@ -3613,10 +3613,10 @@ __metadata:
   linkType: hard
 
 "svelte@npm:^5.20.0":
-  version: 5.27.1
-  resolution: "svelte@npm:5.27.1"
+  version: 5.39.8
+  resolution: "svelte@npm:5.39.8"
   dependencies:
-    "@ampproject/remapping": "npm:^2.3.0"
+    "@jridgewell/remapping": "npm:^2.3.4"
     "@jridgewell/sourcemap-codec": "npm:^1.5.0"
     "@sveltejs/acorn-typescript": "npm:^1.0.5"
     "@types/estree": "npm:^1.0.5"
@@ -3625,12 +3625,12 @@ __metadata:
     axobject-query: "npm:^4.1.0"
     clsx: "npm:^2.1.1"
     esm-env: "npm:^1.2.1"
-    esrap: "npm:^1.4.6"
+    esrap: "npm:^2.1.0"
     is-reference: "npm:^3.0.3"
     locate-character: "npm:^3.0.0"
     magic-string: "npm:^0.30.11"
     zimmerframe: "npm:^1.1.2"
-  checksum: 10c0/42ad0ec2c61e67751039c15ee7f053eedd0ad484c0e89d17785c9b95c520eef9d715690609f70e383aaa7fba25bf615b9073957c01c5b6e37eaea9059a6aaf49
+  checksum: 10c0/761617791bb47cd71cc88aafc1c5ab8da8d35a229324faa557d9873bc4f51ef5e3912ddc29c147958c24e9eb4262e90b08b9bec6c12aa7ba3f99a97573486816
   languageName: node
   linkType: hard
 
