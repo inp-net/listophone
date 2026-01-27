@@ -955,13 +955,11 @@ __metadata:
   linkType: hard
 
 "@sveltejs/adapter-auto@npm:^6.0.0":
-  version: 6.0.0
-  resolution: "@sveltejs/adapter-auto@npm:6.0.0"
-  dependencies:
-    import-meta-resolve: "npm:^4.1.0"
+  version: 6.1.1
+  resolution: "@sveltejs/adapter-auto@npm:6.1.1"
   peerDependencies:
     "@sveltejs/kit": ^2.0.0
-  checksum: 10c0/056d801c8e601f4c3c83e2547bfd3998ecfb9aaa642a4831eee436a512d62d8c0f264d3728136e30367a47eb0f13140292d6831a874e33798a16d302098d70d7
+  checksum: 10c0/acd99c6d322cabae65ed227f02e736d49685e129a8f7500cfca7dd0072dba575519f1a42e6ff0718b927e3e8d43281e73d2a57a72b7d125eaea7568d1076c4a2
   languageName: node
   linkType: hard
 
