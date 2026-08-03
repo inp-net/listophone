@@ -35,7 +35,7 @@ build:
 
 check:
   stage: build
-  image: node:23-alpine
+  image: node:24-alpine
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
   script:

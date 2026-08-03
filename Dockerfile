@@ -1,7 +1,7 @@
 # ==================== #
 #        BUILDER      #
 # ==================== #
-FROM node:23-alpine AS builder
+FROM node:24-alpine AS builder
 
 WORKDIR /app
 
@@ -14,7 +14,7 @@ RUN yarn run build
 # ==================== #
 #      LISTOPHONE      #
 # ==================== #
-FROM node:23-alpine AS listophone
+FROM node:24-alpine AS listophone
 
 WORKDIR /app
 
